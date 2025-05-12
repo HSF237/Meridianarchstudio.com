@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Services - Meridian Arch Studio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background: #1f1f1f;
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 { font-size: 24px; }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ffcc00;
+    }
+    .banner {
+      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: white;
+    }
+    .banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    .banner h2 {
+      position: relative;
+      font-size: 36px;
+      z-index: 1;
+    }
+    section {
+      padding: 60px 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 30px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .service-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .service-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .service-box img {
+      width: 60px;
+      margin-bottom: 20px;
+    }
+    .service-box h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+    .service-box p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.6;
+    }
+    footer {
+      background: #1f1f1f;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Meridian Arch Studio</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="banner">
+  <h2>Our Services</h2>
+</div>
+
+<section>
+  <h2>What We Offer</h2>
+  <div class="services-grid">
+    <div class="service-box">
+      <img src="burger_logo.jpg" alt="Service Logo">
+      <h3>Architectural Design</h3>
+      <p>Creative, sustainable, and aesthetic architectural solutions that blend tradition with innovation.</p>
+    </div>
+    <div class="service-box">
+      <img src="https://cdn-icons-png.flaticon.com/512/2150/2150324.png" alt="Interior Design">
+      <h3>Interior Design</h3>
+      <p>Elegant interiors with modern styling and traditional inspiration for homes and commercial spaces.</p>
+    </div>
+    <div class="service-box">
+      <img src="https://cdn-icons-png.flaticon.com/512/1693/1693851.png" alt="3D Visualizations">
+      <h3>3D Visualization</h3>
+      <p>High-quality 3D renders and walkthroughs to visualize your dream project before it begins.</p>
+    </div>
+    <div class="service-box">
+      <img src="https://cdn-icons-png.flaticon.com/512/2329/2329123.png" alt="Site Planning">
+      <h3>Site Planning</h3>
+      <p>Smart planning for optimum space utilization, zoning regulations, and functional layout designs.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Meridian Arch Studio. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

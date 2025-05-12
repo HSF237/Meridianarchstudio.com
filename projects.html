@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Projects - Meridian Arch Studio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+    }
+    header {
+      background-color: #1f1f1f;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    nav a {
+      margin-left: 20px;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ffcc00;
+    }
+    .banner {
+      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+    .banner::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    .banner h2 {
+      position: relative;
+      font-size: 40px;
+      z-index: 1;
+    }
+    section {
+      padding: 60px 40px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2.section-title {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .project-box {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    .project-box img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .project-box .details {
+      padding: 20px;
+    }
+    .project-box h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .project-box p {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #555;
+    }
+    footer {
+      background-color: #1f1f1f;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Meridian Arch Studio</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="banner">
+  <h2>Our Architectural Projects</h2>
+</div>
+
+<section>
+  <h2 class="section-title">Featured Works</h2>
+  <div class="projects-grid">
+    <div class="project-box">
+      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Zen Courtyard">
+      <div class="details">
+        <h3>Zen Courtyard</h3>
+        <p>Combining minimalism with Kerala traditions, Zen Courtyard is a peaceful home sanctuary with layered textures.</p>
+      </div>
+    </div>
+    <div class="project-box">
+      <img src="https://www.tripurastarnews.com/wp-content/uploads/2025/04/GHR-TITANIA-@-IMPACT-3D-2-1024x768.jpg" alt="Eco Urban Living">
+      <div class="details">
+        <h3>Eco Urban Living</h3>
+        <p>An energy-efficient urban apartment project focusing on natural light and airflow for sustainable living.</p>
+      </div>
+    </div>
+    <div class="project-box">
+      <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914" alt="Kerala Heritage Home">
+      <div class="details">
+        <h3>Kerala Heritage Home</h3>
+        <p>A blend of traditional Kerala architecture and modern interiors, celebrating cultural roots with modern luxury.</p>
+      </div>
+    </div>
+    <div class="project-box">
+      <img src="https://www.shutterstock.com/image-photo/new-shopping-center-retail-office-600nw-53879311.jpg" alt="Commercial Plaza">
+      <div class="details">
+        <h3>Commercial Plaza</h3>
+        <p>A futuristic glass-fronted commercial building in Calicut with smart workspace design and natural green zones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Meridian Arch Studio. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

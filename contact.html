@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - Meridian Arch Studio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f4;
+      color: #222;
+    }
+    header {
+      background: #1f1f1f;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ffcc00;
+    }
+    .banner {
+      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      position: relative;
+    }
+    .banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .banner h2 {
+      position: relative;
+      font-size: 36px;
+      z-index: 1;
+    }
+    section {
+      padding: 60px 40px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2.section-title {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 40px;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .contact-info {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .contact-info h3 {
+      margin-bottom: 20px;
+    }
+    .contact-info p {
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+    .contact-info i {
+      color: #ffcc00;
+      margin-right: 10px;
+    }
+    .contact-form {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .contact-form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      transition: border 0.3s;
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #ffcc00;
+      outline: none;
+    }
+    .contact-form button {
+      background: #1f1f1f;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .contact-form button:hover {
+      background: #ffcc00;
+      color: #000;
+    }
+    footer {
+      background: #1f1f1f;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      margin-top: 50px;
+    }
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Meridian Arch Studio</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="about.html">About Us</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<div class="banner">
+  <h2>Contact Us</h2>
+</div>
+
+<section>
+  <h2 class="section-title">Get in Touch</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Office Information</h3>
+      <p><i class="fas fa-map-marker-alt"></i> Calicut, Kerala - India</p>
+      <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+      <p><i class="fas fa-envelope"></i> hello@meridianarch.in</p>
+      <p><i class="fas fa-clock"></i> Mon - Sat: 9:00am - 6:00pm</p>
+    </div>
+    <div class="contact-form">
+      <form>
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Your full name" required />
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="your@email.com" required />
+        
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" placeholder="Your message..." required></textarea>
+        
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Meridian Arch Studio. All rights reserved.</p>
+</footer>
+
+<!-- FontAwesome CDN for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
