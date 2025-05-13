@@ -1,26 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Projects - Meridian Arch Studio</title>
-  <link rel="website icon" type="png" href="logo.jpg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home - Meridian Arch Studio</title>
   <style>
     * {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       box-sizing: border-box;
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #fdfdfd;
       color: #333;
+      background: url('https://static.vecteezy.com/system/resources/previews/021/615/811/large_2x/abstract-modern-architecture-background-empty-open-space-interior-architectural-space-with-line-structure-3d-rendering-free-photo.jpg') center/cover no-repeat;
       scroll-behavior: smooth;
     }
     header {
-      background-color: #1f1f1f;
-      color: white;
+      background: #1f1f1f;
+      color: #fff;
       padding: 20px 40px;
       display: flex;
       justify-content: space-between;
@@ -31,74 +28,106 @@
     }
     header h1 {
       font-size: 24px;
-      letter-spacing: 1px;
     }
     nav a {
       margin-left: 20px;
-      color: white;
       text-decoration: none;
+      color: white;
       font-size: 16px;
-      transition: color 0.3s ease;
+      transition: 0.3s;
     }
     nav a:hover {
       color: #ffcc00;
     }
-    .banner {
+    .hero {
       background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
-      height: 30vh;
+      height: 90vh;
+      color: white;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      color: white;
       position: relative;
+      text-align: center;
     }
-    .banner::before {
+    .hero::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.5);
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
     }
-    .banner h2 {
+    .hero h2 {
       position: relative;
-      font-size: 40px;
+      font-size: 48px;
+      max-width: 800px;
       z-index: 1;
     }
     section {
       padding: 60px 40px;
     }
-    .projects-grid {
+    .intro, .services, .projects-preview, .testimonials, .cta, .contact-preview {
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    .intro p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-top: 20px;
+    }
+    .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
+      margin-top: 40px;
     }
-    .project-box {
+    .service-box {
       background: white;
+      padding: 30px;
       border-radius: 10px;
-      overflow: hidden;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .project-box:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    .service-box h3 {
+      margin-top: 15px;
+      font-size: 20px;
     }
-    .project-box img {
+    .service-box p {
+      font-size: 15px;
+      margin-top: 10px;
+      color: #666;
+    }
+    .projects-preview img {
       width: 100%;
       height: 200px;
       object-fit: cover;
+      border-radius: 10px;
+      margin-top: 20px;
     }
-    .project-box .details {
-      padding: 20px;
+    .testimonials blockquote {
+      font-style: italic;
+      margin: 30px auto;
+      max-width: 700px;
     }
-    .project-box h3 {
-      font-size: 20px;
-      margin-bottom: 10px;
+    .cta {
+      background-color: #1f1f1f;
+      color: white;
+      padding: 60px 40px;
+      border-radius: 10px;
     }
-    .project-box p {
-      font-size: 15px;
-      line-height: 1.5;
-      color: #555;
+    .cta h2 {
+      font-size: 32px;
+    }
+    .cta a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #ffcc00;
+      color: #000;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .cta a:hover {
+      background-color: #e6b800;
     }
     footer {
       background-color: #1f1f1f;
@@ -121,42 +150,51 @@
   </nav>
 </header>
 
-<div class="banner">
-  <h2>Our Architectural Projects</h2>
+<div class="hero">
+  <h2>Designing Dreams. Building the Future.</h2>
 </div>
 
-<section>
-  <h2 style="text-align: center; margin-bottom: 40px;">Featured Works</h2>
-  <div class="projects-grid">
-    <div class="project-box">
-      <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Modern Villa">
-      <div class="details">
-        <h3>Zen Courtyard</h3>
-        <p>Combining minimalism with Kerala traditions, Zen Courtyard is a peaceful home sanctuary with layered textures.</p>
-      </div>
+<section class="intro">
+  <h2>Welcome to Meridian Arch Studio</h2>
+  <p>We are a Kerala-based architectural firm blending traditional aesthetics with modern functionality. Our designs respect nature, culture, and innovation—crafted with care for every client.</p>
+</section>
+
+<section class="services">
+  <h2>Our Services</h2>
+  <div class="services-grid">
+    <div class="service-box">
+      <h3>Residential Design</h3>
+      <p>Personalized home designs rooted in climate-sensitive and Vastu-compliant architecture.</p>
     </div>
-    <div class="project-box">
-      <img src="https://www.tripurastarnews.com/wp-content/uploads/2025/04/GHR-TITANIA-@-IMPACT-3D-2-1024x768.jpg" alt="Eco Urban Living">
-      <div class="details">
-        <h3>Eco Urban Living</h3>
-        <p>An energy-efficient urban apartment project focusing on natural light and airflow for sustainable living.</p>
-      </div>
+    <div class="service-box">
+      <h3>Commercial Spaces</h3>
+      <p>Smart, sustainable, and stylish commercial layouts for modern business needs.</p>
     </div>
-    <div class="project-box">
-      <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914" alt="Kerala Heritage Home">
-      <div class="details">
-        <h3>Kerala Heritage Home</h3>
-        <p>A blend of traditional Kerala architecture and modern interiors, celebrating cultural roots with modern luxury.</p>
-      </div>
+    <div class="service-box">
+      <h3>3D Visualization</h3>
+      <p>Realistic renders and walkthroughs to bring your concepts to life before construction.</p>
     </div>
-    <div class="project-box">
-      <img src="https://www.shutterstock.com/image-photo/new-shopping-center-retail-office-600nw-53879311.jpg" alt="Commercial Plaza">
-      <div class="details">
-        <h3>Commercial Plaza</h3>
-        <p>A futuristic glass-fronted commercial building in Calicut with smart workspace design and natural green zones.</p>
-      </div>
+    <div class="service-box">
+      <h3>Renovations</h3>
+      <p>Revamping traditional structures while preserving their soul and identity.</p>
     </div>
   </div>
+</section>
+
+<section class="projects-preview">
+  <h2>Featured Projects</h2>
+  <p>Explore our latest architectural masterpieces.</p>
+  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Preview Project">
+</section>
+
+<section class="testimonials">
+  <h2>What Our Clients Say</h2>
+  <blockquote>"Meridian Arch Studio transformed our vision into reality. Every detail was perfect, and their team was wonderful to work with." – Ayesha Rahman, Calicut</blockquote>
+</section>
+
+<section class="cta">
+  <h2>Ready to Build Your Dream?</h2>
+  <a href="contact.html">Get in Touch</a>
 </section>
 
 <footer>
