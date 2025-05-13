@@ -15,30 +15,69 @@
       background: url('https://static.vecteezy.com/system/resources/previews/021/615/811/large_2x/abstract-modern-architecture-background-empty-open-space-interior-architectural-space-with-line-structure-3d-rendering-free-photo.jpg') center/cover no-repeat;
       scroll-behavior: smooth;
     }
-    header {
-      background: #1f1f1f;
-      color: #fff;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-    }
-    header h1 {
-      font-size: 24px;
-    }
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: white;
-      font-size: 16px;
-      transition: 0.3s;
-    }
-    nav a:hover {
-      color: #ffcc00;
-    }
+   header {
+  background: #1f1f1f;
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+header h1 {
+  font-size: 20px;
+  flex: 1 0 100%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+nav a {
+  margin: 8px 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #ffcc00;
+}
+
+/* Media query for screens below 600px */
+@media (min-width: 600px) {
+  header {
+    flex-wrap: nowrap;
+  }
+
+  header h1 {
+    font-size: 24px;
+    flex: none;
+    margin-bottom: 0;
+    text-align: left;
+  }
+
+  nav {
+    justify-content: flex-end;
+    width: auto;
+  }
+
+  nav a {
+    margin-left: 20px;
+    font-size: 16px;
+  }
+}
+
     .hero {
       background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
       height: 90vh;
