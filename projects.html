@@ -5,18 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Meridian Arch Studio</title>
   <link rel="icon" type="image/png" href="logo.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
-      margin: 0; padding: 0; box-sizing: border-box;
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
     }
+    
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       color: #222;
       background: #fafafa;
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
+    
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    
+    /* Animated Background */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.05;
+    }
+    .animated-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #1f1f1f, #333, #1f1f1f);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Header Styles */
     header {
-      background: #1f1f1f;
+      background: rgba(31, 31, 31, 0.95);
+      backdrop-filter: blur(10px);
       color: #fff;
       padding: 15px 20px;
       display: flex;
@@ -26,47 +77,138 @@
       position: sticky;
       top: 0;
       z-index: 999;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      animation: slideDown 0.8s ease-out;
     }
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    
     header h1 {
       font-size: 20px;
+      background: linear-gradient(90deg, #ffcc00, #ff9900);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+      letter-spacing: 1px;
+      animation: fadeIn 1s ease-out;
     }
+    
     sup.reg {
       font-size: 0.5em;
       vertical-align: top;
       margin-left: 2px;
     }
+    
     nav a {
       color: #fff;
       text-decoration: none;
       margin-left: 15px;
       font-size: 15px;
-    }
-    nav a:hover {
-      color: #ffcc00;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 5px 0;
     }
     
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #ffcc00;
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover {
+      color: #ffcc00;
+      transform: translateY(-2px);
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero Banner */
     .hero {
       height: 250px;
-      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       position: relative;
+      overflow: hidden;
     }
+    
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
+      z-index: -2;
+      animation: zoomIn 20s infinite alternate;
+    }
+    
+    @keyframes zoomIn {
+      from { transform: scale(1); }
+      to { transform: scale(1.1); }
+    }
+    
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
       background: rgba(0,0,0,0.5);
+      z-index: -1;
     }
-    .hero h2 {
-      color: #fff;
-      font-size: 36px;
-      z-index: 1;
+    
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       text-align: center;
-      padding: 0 20px;
+      color: #fff;
+      z-index: 1;
+      animation: fadeInUp 1.5s ease-out;
     }
-
+    
+    @keyframes fadeInUp {
+      from {
+        transform: translate(-50%, -30%);
+        opacity: 0;
+      }
+      to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+      }
+    }
+    
+    .hero h2 {
+      font-size: 36px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .hero h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: #ffcc00;
+    }
+    
+    /* Projects Section */
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -74,36 +216,138 @@
       padding: 40px 20px;
       max-width: 1200px;
       margin: auto;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
     }
-
+    
+    .projects.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
     .project-box {
       background: #fff;
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       position: relative;
+      transition: all 0.3s ease;
     }
-
+    
+    .project-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
     .project-box h3 {
-      padding: 10px;
+      padding: 15px;
       background: #1f1f1f;
       color: #fff;
-      font-size: 16px;
+      font-size: 18px;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
     }
-
+    
+    .project-box h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #ffcc00;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .project-box:hover h3::after {
+      transform: translateX(0);
+    }
+    
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+      height: 200px;
+    }
+    
     .slider {
       display: flex;
       transition: transform 0.5s ease-in-out;
+      height: 100%;
     }
-
+    
     .slider img {
       width: 100%;
-      height: 200px;
+      height: 100%;
       object-fit: cover;
       flex-shrink: 0;
       cursor: pointer;
+      transition: all 0.3s ease;
     }
-
+    
+    .slider img:hover {
+      transform: scale(1.05);
+    }
+    
+    .slider-controls {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+    }
+    
+    .slider-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .slider-dot.active {
+      background: #ffcc00;
+    }
+    
+    .slider-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 2;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    .project-box:hover .slider-nav {
+      opacity: 1;
+    }
+    
+    .slider-nav.prev {
+      left: 10px;
+    }
+    
+    .slider-nav.next {
+      right: 10px;
+    }
+    
+    .slider-nav:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+    
     /* Modal */
     .modal {
       display: none;
@@ -116,11 +360,17 @@
       background: rgba(0,0,0,0.9);
       justify-content: center;
       align-items: center;
+      animation: fadeIn 0.3s ease;
     }
+    
     .modal img {
       max-width: 90%;
       max-height: 80vh;
+      border-radius: 5px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+      animation: zoomIn 0.3s ease;
     }
+    
     .close-btn {
       position: absolute;
       top: 20px;
@@ -128,215 +378,530 @@
       font-size: 28px;
       color: white;
       cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10000;
     }
-
+    
+    .close-btn:hover {
+      color: #ffcc00;
+      transform: rotate(90deg);
+    }
+    
+    /* Filter Buttons */
+    .filter-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      padding: 8px 16px;
+      background: #1f1f1f;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    
+    .filter-btn:hover, .filter-btn.active {
+      background: #ffcc00;
+      color: #1f1f1f;
+    }
+    
+    /* Footer */
     footer {
       background: #1f1f1f;
       color: white;
       text-align: center;
       padding: 20px;
+      position: relative;
     }
-
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #ffcc00, transparent);
+    }
+    
+    /* Floating Social Icons */
+    .social-icons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+    
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: rgba(31, 31, 31, 0.8);
+      border-radius: 50%;
+      color: white;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .social-icons a:hover {
+      background: #ffcc00;
+      color: #1f1f1f;
+      transform: translateY(-5px);
+    }
+    
+    /* Loading Animation */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #1f1f1f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .loader-circle {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #ffcc00;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Animation for fade in */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 45px;
+      height: 45px;
+      background: rgba(31, 31, 31, 0.8);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      background: #ffcc00;
+      color: #1f1f1f;
+      transform: translateY(-5px);
+    }
+    
+    /* Responsive Design */
     @media(max-width: 768px) {
-      .hero h2 { font-size: 24px; }
-      header h1 { font-size: 18px; }
+      .hero h2 { 
+        font-size: 24px; 
+      }
+      header h1 { 
+        font-size: 18px; 
+      }
+      .projects {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        padding: 20px 10px;
+      }
+      .social-icons {
+        bottom: 10px;
+        right: 10px;
+      }
+      .social-icons a {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+      .back-to-top {
+        bottom: 10px;
+        left: 10px;
+        width: 40px;
+        height: 40px;
+      }
     }
-    .about-btn {
-  background: #ffcc00;
-  color: #000;
-  border: none;
-  padding: 10px 16px;
-  font-size: 14px;
-  font-weight: bold;
-  border-radius: 5px;
-  cursor: pointer;
-}
-.about-btn:hover {
-  background: #e6b800;
-}
-.social-icons {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1000;
-}
-
-.social-icons img {
-  width: 24px;
-  height: 24px;
-  filter: drop-shadow(0 0 2px rgba(0,0,0,0.4));
-  transition: transform 0.2s;
-}
-
-.social-icons a:hover img {
-  transform: scale(1.1);
-}
   </style>
 </head>
 <body>
-
-<header>
-  <h1>Meridian Arch Studio</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="projects.html">Projects</a>
-    <a href="about.html">About Us</a>
-    <a href="services.html">Services</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
-
-<div class="banner">
-  <h2>Our Projects</h2>
-</div>
-
-<section id="projects" class="projects">
-  <div class="project-box">
-    <h3>Ongoing/Completed Projects</h3>
-    <div class="slider" id="slider1">
-      <img src="001.jpg" onclick="openModal(this.src)">
-      <img src="005.jpg" onclick="openModal(this.src)">
-      <img src="31.jpg" onclick="openModal(this.src)">
-      <img src="3D - Mr.Sabir, Vellur (1).jpg" onclick="openModal(this.src)">
-      <img src="4ee5e7f0a2c52cbbc4701cf657d14367.jpg" onclick="openModal(this.src)">
-      <img src="79fb5c8d-db1f-4720-a184-15cff8bac4b2.jpg" onclick="openModal(this.src)">
-      <img src="Ahmed perumba.jpg" onclick="openModal(this.src)">
-      <img src="Ashker 12ps.jpg" onclick="openModal(this.src)">
-      <img src="IMG-20181202-WA0004.jpg" onclick="openModal(this.src)">
-      <img src="IMG-20190104-WA0003.jpg" onclick="openModal(this.src)">
-      <img src="KASIM 3.jpg" onclick="openModal(this.src)">
-      <img src="RZK.png" onclick="openModal(this.src)">
-      <img src="WhatsApp Image 2019-12-16 at 5.11.15 PM.jpeg" onclick="openModal(this.src)">
-      <img src="WhatsApp Image 2023-08-19 at 4.51.47 PM.jpeg" onclick="openModal(this.src)">
-      <img src="WhatsApp Image 2023-08-19 at 4.51.48 PM.jpeg" onclick="openModal(this.src)">
-      <img src="WhatsApp Image 2023-08-19 at 4.51.49 PM.jpeg" onclick="openModal(this.src)">
-      <img src="WhatsApp Image 2023-08-19 at 4.51.55 PM.jpeg" onclick="openModal(this.src)"> 
-      <img src="WhatsApp Image 2023-08-19 at 4.51.56 PM.jpeg" onclick="openModal(this.src)">
-      <img src="ali maniyatt slope 4.jpg" onclick="openModal(this.src)">
-      <img src="ashkar payyannur.jpg" onclick="openModal(this.src)">
-      <img src="double 10.jpg" onclick="openModal(this.src)">
-      <img src="fareeda 3d exterior.png" onclick="openModal(this.src)">
-      <img src="frt.jpg" onclick="openModal(this.src)">
-      <img src="habeeb cheemeni.jpg" onclick="openModal(this.src)">
-      <img src="hakkeem vengara.jpg" onclick="openModal(this.src)">
-      <img src="jamal koyappara.jpg" onclick="openModal(this.src)">
-      <img src="jmsd payyanki.jpg" onclick="openModal(this.src)">
-      <img src="k 1.jpg" onclick="openModal(this.src)">
-      <img src="kabeer 3d.03.jpg" onclick="openModal(this.src)">
-      <img src="khaleel padanna.jpg" onclick="openModal(this.src)">
-      <img src="mubassira kunhimangalam.jpg" onclick="openModal(this.src)">
-      <img src="muhsina kunhimangalam.jpg" onclick="openModal(this.src)">
-      <img src="navas 5-zoomd.jpg" onclick="openModal(this.src)">
-      <img src="ps 02.jpg" onclick="openModal(this.src)">
-      <img src="raz pay.jpg" onclick="openModal(this.src)">
-      <img src="raz rn pay.jpg" onclick="openModal(this.src)">
-      <img src="shajahan.jpg" onclick="openModal(this.src)">
-      <img src="tito front.jpg" onclick="openModal(this.src)">
-     </div>
+  <!-- Loading Animation -->
+  <div class="loader" id="loader">
+    <div class="loader-circle"></div>
   </div>
-  <div class="project-box">
-    <h3>Villa Projects</h3>
-    <div class="slider" id="slider2">
-      <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
+
+  <!-- Animated Background -->
+  <div class="animated-bg"></div>
+
+  <header>
+    <h1>Meridian Arch Studio</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h2>Our Projects</h2>
     </div>
   </div>
-  <div class="project-box">
-    <h3>Plots for Sale</h3>
-    <div class="slider" id="slider3">
-      <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
-       <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
-       <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
-       <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
-       <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
-       <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
-      <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
-    </div>
+
+  <div class="filter-container">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="ongoing">Ongoing/Completed</button>
+    <button class="filter-btn" data-filter="villa">Villa Projects</button>
+    <button class="filter-btn" data-filter="plots">Plots for Sale</button>
   </div>
-</section>
 
-<!-- Modal for image popup -->
-<div class="modal" id="imageModal" onclick="closeModal()">
-  <span class="close-btn" onclick="closeModal()">×</span>
-  <img id="modalImg" src="">
-</div>
+  <section id="projects" class="projects">
+    <div class="project-box" data-category="ongoing">
+      <h3>Ongoing/Completed Projects</h3>
+      <div class="slider-container">
+        <div class="slider" id="slider1">
+          <img src="001.jpg" onclick="openModal(this.src)">
+          <img src="005.jpg" onclick="openModal(this.src)">
+          <img src="31.jpg" onclick="openModal(this.src)">
+          <img src="3D - Mr.Sabir, Vellur (1).jpg" onclick="openModal(this.src)">
+          <img src="4ee5e7f0a2c52cbbc4701cf657d14367.jpg" onclick="openModal(this.src)">
+          <img src="79fb5c8d-db1f-4720-a184-15cff8bac4b2.jpg" onclick="openModal(this.src)">
+          <img src="Ahmed perumba.jpg" onclick="openModal(this.src)">
+          <img src="Ashker 12ps.jpg" onclick="openModal(this.src)">
+          <img src="IMG-20181202-WA0004.jpg" onclick="openModal(this.src)">
+          <img src="IMG-20190104-WA0003.jpg" onclick="openModal(this.src)">
+          <img src="KASIM 3.jpg" onclick="openModal(this.src)">
+          <img src="RZK.png" onclick="openModal(this.src)">
+          <img src="WhatsApp Image 2019-12-16 at 5.11.15 PM.jpeg" onclick="openModal(this.src)">
+          <img src="WhatsApp Image 2023-08-19 at 4.51.47 PM.jpeg" onclick="openModal(this.src)">
+          <img src="WhatsApp Image 2023-08-19 at 4.51.48 PM.jpeg" onclick="openModal(this.src)">
+          <img src="WhatsApp Image 2023-08-19 at 4.51.49 PM.jpeg" onclick="openModal(this.src)">
+          <img src="WhatsApp Image 2023-08-19 at 4.51.55 PM.jpeg" onclick="openModal(this.src)"> 
+          <img src="WhatsApp Image 2023-08-19 at 4.51.56 PM.jpeg" onclick="openModal(this.src)">
+          <img src="ali maniyatt slope 4.jpg" onclick="openModal(this.src)">
+          <img src="ashkar payyannur.jpg" onclick="openModal(this.src)">
+          <img src="double 10.jpg" onclick="openModal(this.src)">
+          <img src="fareeda 3d exterior.png" onclick="openModal(this.src)">
+          <img src="frt.jpg" onclick="openModal(this.src)">
+          <img src="habeeb cheemeni.jpg" onclick="openModal(this.src)">
+          <img src="hakkeem vengara.jpg" onclick="openModal(this.src)">
+          <img src="jamal koyappara.jpg" onclick="openModal(this.src)">
+          <img src="jmsd payyanki.jpg" onclick="openModal(this.src)">
+          <img src="k 1.jpg" onclick="openModal(this.src)">
+          <img src="kabeer 3d.03.jpg" onclick="openModal(this.src)">
+          <img src="khaleel padanna.jpg" onclick="openModal(this.src)">
+          <img src="mubassira kunhimangalam.jpg" onclick="openModal(this.src)">
+          <img src="muhsina kunhimangalam.jpg" onclick="openModal(this.src)">
+          <img src="navas 5-zoomd.jpg" onclick="openModal(this.src)">
+          <img src="ps 02.jpg" onclick="openModal(this.src)">
+          <img src="raz pay.jpg" onclick="openModal(this.src)">
+          <img src="raz rn pay.jpg" onclick="openModal(this.src)">
+          <img src="shajahan.jpg" onclick="openModal(this.src)">
+          <img src="tito front.jpg" onclick="openModal(this.src)">
+        </div>
+        <div class="slider-controls" id="slider1-dots"></div>
+        <div class="slider-nav prev" onclick="changeSlide('slider1', -1)">
+          <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="slider-nav next" onclick="changeSlide('slider1', 1)">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
+    </div>
+    
+    <div class="project-box" data-category="villa">
+      <h3>Villa Projects</h3>
+      <div class="slider-container">
+        <div class="slider" id="slider2">
+          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
+        </div>
+        <div class="slider-controls" id="slider2-dots"></div>
+        <div class="slider-nav prev" onclick="changeSlide('slider2', -1)">
+          <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="slider-nav next" onclick="changeSlide('slider2', 1)">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
+    </div>
+    
+    <div class="project-box" data-category="plots">
+      <h3>Plots for Sale</h3>
+      <div class="slider-container">
+        <div class="slider" id="slider3">
+          <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
+          <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
+        </div>
+        <div class="slider-controls" id="slider3-dots"></div>
+        <div class="slider-nav prev" onclick="changeSlide('slider3', -1)">
+          <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="slider-nav next" onclick="changeSlide('slider3', 1)">
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<footer>
-  &copy; 2025 Meridian<sup class="reg">®️</sup> Arch Studio. All rights reserved.
-</footer>
+  <!-- Modal for image popup -->
+  <div class="modal" id="imageModal" onclick="closeModal()">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <img id="modalImg" src="">
+  </div>
 
-<script>
-  function autoSlide(id) {
-    const slider = document.getElementById(id);
-    let index = 0;
-    const images = slider.querySelectorAll('img');
-    setInterval(() => {
-      index = (index + 1) % images.length;
+  <footer>
+    &copy; 2025 Meridian<sup class="reg">®️</sup> Arch Studio. All rights reserved.
+  </footer>
+
+  <!-- Floating Social Icons -->
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    // Hide loader when page is loaded
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loader').classList.add('hidden');
+      }, 500);
+    });
+
+    // Scroll animations
+    const projectsSection = document.querySelector('.projects');
+    
+    function checkScroll() {
+      const sectionTop = projectsSection.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      
+      if (sectionTop < windowHeight * 0.75) {
+        projectsSection.classList.add('visible');
+      }
+    }
+    
+    window.addEventListener('scroll', checkScroll);
+    checkScroll(); // Check on load
+
+    // Back to top button
+    const backToTopButton = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectBoxes = document.querySelectorAll('.project-box');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        const filter = button.getAttribute('data-filter');
+        
+        projectBoxes.forEach(box => {
+          if (filter === 'all' || box.getAttribute('data-category') === filter) {
+            box.style.display = 'block';
+            setTimeout(() => {
+              box.style.opacity = '1';
+              box.style.transform = 'translateY(0)';
+            }, 10);
+          } else {
+            box.style.opacity = '0';
+            box.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              box.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+    });
+
+    // Slider functionality
+    function initSlider(sliderId) {
+      const slider = document.getElementById(sliderId);
+      const images = slider.querySelectorAll('img');
+      const dotsContainer = document.getElementById(sliderId + '-dots');
+      let currentIndex = 0;
+      
+      // Create dots
+      images.forEach((_, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('slider-dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(sliderId, index));
+        dotsContainer.appendChild(dot);
+      });
+      
+      // Auto slide
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateSlider(sliderId, currentIndex);
+      }, 3000);
+      
+      return currentIndex;
+    }
+    
+    function updateSlider(sliderId, index) {
+      const slider = document.getElementById(sliderId);
+      const dots = document.querySelectorAll(`#${sliderId}-dots .slider-dot`);
+      
       slider.style.transform = `translateX(-${index * 100}%)`;
-    }, 2000);
-  }
+      
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+    }
+    
+    function goToSlide(sliderId, index) {
+      updateSlider(sliderId, index);
+    }
+    
+    function changeSlide(sliderId, direction) {
+      const slider = document.getElementById(sliderId);
+      const images = slider.querySelectorAll('img');
+      const dots = document.querySelectorAll(`#${sliderId}-dots .slider-dot`);
+      let activeIndex = 0;
+      
+      dots.forEach((dot, i) => {
+        if (dot.classList.contains('active')) {
+          activeIndex = i;
+        }
+      });
+      
+      const newIndex = (activeIndex + direction + images.length) % images.length;
+      updateSlider(sliderId, newIndex);
+    }
+    
+    // Initialize sliders
+    ['slider1', 'slider2', 'slider3'].forEach(initSlider);
 
-  ['slider1', 'slider2', 'slider3'].forEach(autoSlide);
+    // Modal functionality
+    function openModal(src) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      modalImg.src = src;
+      modal.style.display = 'flex';
+    }
+    
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
+    }
 
-  function openModal(src) {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImg');
-    modalImg.src = src;
-    modal.style.display = 'flex';
-  }
-
-  function closeModal() {
-    document.getElementById('imageModal').style.display = 'none';
-  }
-  function scrollToAbout() {
-  const aboutSection = document.getElementById('about-us');
-  if (aboutSection) {
-    aboutSection.scrollIntoView({ behavior: 'smooth' });
-  }
-}
-</script>
-
+    // Parallax effect for hero section
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.pageYOffset;
+      const heroBg = document.querySelector('.hero-bg');
+      if (heroBg) {
+        heroBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+      }
+    });
+  </script>
 </body>
 </html>
