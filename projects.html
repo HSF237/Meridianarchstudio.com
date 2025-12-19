@@ -140,32 +140,36 @@
     
     /* Hero Banner */
     .hero {
-      height: 250px;
+      height: 700px;
       position: relative;
       overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     
-    .hero-bg {
+    .hero-video-container {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
-      z-index: -2;
-      animation: zoomIn 20s infinite alternate;
+      z-index: -1;
+      overflow: hidden;
     }
     
-    @keyframes zoomIn {
-      from { transform: scale(1); }
-      to { transform: scale(1.1); }
+    .hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background-color: #000;
     }
     
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.4);
       z-index: -1;
     }
     
@@ -178,6 +182,13 @@
       color: #fff;
       z-index: 1;
       animation: fadeInUp 1.5s ease-out;
+      max-width: 800px;
+      padding: 0 20px;
+      transition: opacity 2s ease;
+    }
+    
+    .hero-content.fade-out {
+      opacity: 0;
     }
     
     @keyframes fadeInUp {
@@ -192,9 +203,11 @@
     }
     
     .hero h2 {
-      font-size: 36px;
+      font-size: 64px;
       position: relative;
       display: inline-block;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     }
     
     .hero h2::after {
@@ -208,208 +221,265 @@
       background: #ffcc00;
     }
     
-    /* Projects Section */
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: auto;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     }
     
-    .projects.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 100px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 2;
+      transition: all 0.3s ease, opacity 2s ease;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
     }
     
-    .project-box {
+    .play-button:hover {
       background: #fff;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    
+    .play-button.fade-out {
+      opacity: 0;
+    }
+    
+    .play-button i {
+      font-size: 50px;
+      color: #1f1f1f;
+    }
+    
+    /* Video Controls */
+    .video-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 800px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
       border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      position: relative;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 3;
+      transition: opacity 2s ease;
+    }
+    
+    .video-controls.fade-out {
+      opacity: 0;
+    }
+    
+    .duration {
+      color: #fff;
+      font-size: 14px;
+    }
+    
+    .mute-btn {
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
       transition: all 0.3s ease;
     }
     
-    .project-box:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    .mute-btn:hover {
+      color: #ffcc00;
+      transform: scale(1.1);
     }
     
-    .project-box h3 {
-      padding: 15px;
-      background: #1f1f1f;
-      color: #fff;
-      font-size: 18px;
-      font-weight: 600;
+    /* Video Section */
+    .video-section {
+      padding: 60px 20px;
+      background: #fff;
+    }
+    
+    .video-section h3 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: #1f1f1f;
       position: relative;
-      overflow: hidden;
+      display: inline-block;
+      margin: 0 auto 40px;
     }
     
-    .project-box h3::after {
+    .video-section h3::after {
       content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: #ffcc00;
+    }
+    
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .video-item {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      height: 300px;
+    }
+    
+    .video-item:hover {
+      transform: translateY(-10px);
+    }
+    
+    .video-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .video-item .video-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 400px;
+    }
+    
+    .video-item .mute-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 4;
+    }
+    
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .video-item:hover .video-overlay {
+      opacity: 1;
+    }
+    
+    .video-overlay i {
+      font-size: 50px;
+      color: #fff;
+      cursor: pointer;
+    }
+    
+    .video-title {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      color: #fff;
+      text-align: center;
+    }
+    
+    /* Image Gallery */
+    .gallery-section {
+      padding: 60px 20px;
+      background: #f8f8f8;
+    }
+    
+    .gallery-section h3 {
+      text-align: center;
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: #1f1f1f;
+      position: relative;
+      display: inline-block;
+      margin: 0 auto 40px;
+    }
+    
+    .gallery-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
       height: 3px;
       background: #ffcc00;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
     }
     
-    .project-box:hover h3::after {
-      transform: translateX(0);
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
     
-    .slider-container {
+    .gallery-item {
       position: relative;
+      border-radius: 15px;
       overflow: hidden;
-      height: 200px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      height: 250px;
     }
     
-    .slider {
-      display: flex;
-      transition: transform 0.5s ease-in-out;
-      height: 100%;
+    .gallery-item:hover {
+      transform: translateY(-10px);
     }
     
-    .slider img {
+    .gallery-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      flex-shrink: 0;
-      cursor: pointer;
-      transition: all 0.3s ease;
     }
     
-    .slider img:hover {
-      transform: scale(1.05);
-    }
-    
-    .slider-controls {
+    .gallery-overlay {
       position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      z-index: 2;
-    }
-    
-    .slider-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .slider-dot.active {
-      background: #ffcc00;
-    }
-    
-    .slider-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 30px;
-      height: 30px;
-      background: rgba(0, 0, 0, 0.5);
-      color: white;
-      border-radius: 50%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
       display: flex;
       justify-content: center;
       align-items: center;
-      cursor: pointer;
-      z-index: 2;
       opacity: 0;
-      transition: all 0.3s ease;
+      transition: opacity 0.3s ease;
     }
     
-    .project-box:hover .slider-nav {
+    .gallery-item:hover .gallery-overlay {
       opacity: 1;
     }
     
-    .slider-nav.prev {
-      left: 10px;
-    }
-    
-    .slider-nav.next {
-      right: 10px;
-    }
-    
-    .slider-nav:hover {
-      background: rgba(0, 0, 0, 0.8);
-    }
-    
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.9);
-      justify-content: center;
-      align-items: center;
-      animation: fadeIn 0.3s ease;
-    }
-    
-    .modal img {
-      max-width: 90%;
-      max-height: 80vh;
-      border-radius: 5px;
-      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-      animation: zoomIn 0.3s ease;
-    }
-    
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 28px;
-      color: white;
+    .gallery-overlay i {
+      font-size: 40px;
+      color: #fff;
       cursor: pointer;
-      transition: all 0.3s ease;
-      z-index: 10000;
-    }
-    
-    .close-btn:hover {
-      color: #ffcc00;
-      transform: rotate(90deg);
-    }
-    
-    /* Filter Buttons */
-    .filter-container {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin: 20px 0;
-      flex-wrap: wrap;
-    }
-    
-    .filter-btn {
-      padding: 8px 16px;
-      background: #1f1f1f;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: all 0.3s ease;
-    }
-    
-    .filter-btn:hover, .filter-btn.active {
-      background: #ffcc00;
-      color: #1f1f1f;
     }
     
     /* Footer */
@@ -535,14 +605,16 @@
     /* Responsive Design */
     @media(max-width: 768px) {
       .hero h2 { 
-        font-size: 24px; 
+        font-size: 36px; 
       }
       header h1 { 
         font-size: 18px; 
       }
-      .projects {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        padding: 20px 10px;
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+      .gallery-grid {
+        grid-template-columns: 1fr;
       }
       .social-icons {
         bottom: 10px;
@@ -559,6 +631,484 @@
         width: 40px;
         height: 40px;
       }
+      .video-controls {
+        bottom: 10px;
+        padding: 5px 10px;
+      }
+      .duration {
+        font-size: 12px;
+      }
+      /* Add these styles to your existing CSS or replace the relevant sections */
+
+/* Header/Navbar improvements */
+header {
+  background: rgba(31, 31, 31, 0.95);
+  backdrop-filter: blur(10px);
+  color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideDown 0.8s ease-out;
+}
+
+header h1 {
+  font-size: 24px; /* Increased for better visibility */
+  background: linear-gradient(90deg, #ffcc00, #ff9900);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+  letter-spacing: 1px;
+  animation: fadeIn 1s ease-out;
+  margin: 0; /* Remove default margin */
+}
+
+nav {
+  display: flex;
+  gap: 20px; /* Improved spacing between nav items */
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px; /* Add space below logo on mobile */
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px; /* Slightly larger for better readability */
+  transition: all 0.3s ease;
+  padding: 8px 15px; /* Add padding for better click area */
+  border-radius: 4px;
+}
+
+nav a:hover {
+  color: #ffcc00;
+  transform: translateY(-2px);
+  background: rgba(255, 204, 0, 0.1); /* Add subtle background on hover */
+}
+
+/* Footer improvements */
+footer {
+  background: #1f1f1f;
+  color: white;
+  text-align: center;
+  padding: 25px 20px; /* Increased padding */
+  position: relative;
+  margin-top: 40px; /* Add space above footer */
+}
+
+footer p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ffcc00, transparent);
+}
+
+/* Mobile responsiveness improvements */
+@media(max-width: 768px) {
+  /* Header adjustments for mobile */
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 10px;
+  }
+  
+  header h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  nav {
+    margin-top: 0;
+    gap: 15px;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  nav a {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+  
+  /* Hero section adjustments */
+  .hero {
+    height: 500px; /* Reduced height for mobile */
+  }
+  
+  .hero h2 {
+    font-size: 32px; /* Smaller heading on mobile */
+  }
+  
+  .hero p {
+    font-size: 16px; /* Smaller paragraph on mobile */
+  }
+  
+  /* Video controls adjustments */
+  .video-controls {
+    bottom: 10px;
+    padding: 8px 15px;
+  }
+  
+  .duration {
+    font-size: 12px;
+  }
+  
+  .mute-btn i {
+    font-size: 18px;
+  }
+  
+  /* Video grid adjustments */
+  .video-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .video-item {
+    height: 250px; /* Smaller video items on mobile */
+  }
+  
+  /* Gallery adjustments */
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .gallery-item {
+    height: 200px; /* Smaller gallery items on mobile */
+  }
+  
+    /* Social Icons Styling */
+.social-icons {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.social-icons a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(31, 31, 31, 0.8);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.social-icons a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ffcc00, #ff9900);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.social-icons a:hover {
+  transform: translateY(-5px) scale(1.1);
+  background: rgba(31, 31, 31, 0.9);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.social-icons a:hover::before {
+  opacity: 0.1;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) saturate(100%) invert(100%) hue-rotate(180deg);
+  transition: filter 0.3s ease;
+}
+
+.social-icons a:hover img {
+  filter: brightness(0) saturate(100%) invert(80%) hue-rotate(180deg);
+}
+
+/* Social icon animations */
+.social-icons a:nth-child(1) {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.social-icons a:nth-child(2) {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+
+.social-icons a:nth-child(3) {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Social Icons Styling */
+.social-icons {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.social-icons a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(31, 31, 31, 0.8);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.social-icons a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ffcc00, #ff9900);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.social-icons a:hover {
+  transform: translateY(-5px) scale(1.1);
+  background: rgba(31, 31, 31, 0.9);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.social-icons a:hover::before {
+  opacity: 0.1;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) saturate(100%) invert(100%) hue-rotate(180deg);
+  transition: filter 0.3s ease;
+}
+
+.social-icons a:hover img {
+  filter: brightness(0) saturate(100%) invert(80%) hue-rotate(180deg);
+}
+
+/* Social icon animations */
+.social-icons a:nth-child(1) {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.social-icons a:nth-child(2) {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+
+.social-icons a:nth-child(3) {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Social Icons Styling */
+.social-icons {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.social-icons a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(31, 31, 31, 0.8);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.social-icons a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ffcc00, #ff9900);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.social-icons a:hover {
+  transform: translateY(-5px) scale(1.1);
+  background: rgba(31, 31, 31, 0.9);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.social-icons a:hover::before {
+  opacity: 0.1;
+}
+
+.social-icons img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) saturate(100%) invert(100%) hue-rotate(180deg);
+  transition: filter 0.3s ease;
+}
+
+.social-icons a:hover img {
+  filter: brightness(0) saturate(100%) invert(80%) hue-rotate(180deg);
+}
+
+/* Social icon animations */
+.social-icons a:nth-child(1) {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.social-icons a:nth-child(2) {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 0.2s;
+}
+
+.social-icons a:nth-child(3) {
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 0.4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Mobile responsiveness for social icons */
+@media (max-width: 10px) {
+  .social-icons {
+    bottom: 20px;
+    right: 20px;
+  }
+  
+  .social-icons a {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .social-icons img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 20px) {
+  .social-icons {
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .social-icons a {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .social-icons img {
+    width: 18px;
+    height: 18px;
+  }
+}
+}
+
+@media(max-width: 20px) {
+  /* Extra adjustments for very small screens */
+  header h1 {
+    font-size: 18px;
+  }
+  
+  nav a {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+  
+  .hero h2 {
+    font-size: 28px;
+  }
+  
+  .hero p {
+    font-size: 14px;
+  }
+  
+  .video-controls {
+    padding: 6px 12px;
+  }
+  
+  .duration {
+    font-size: 11px;
+  }
+  
+}
     }
   </style>
 </head>
@@ -583,169 +1133,108 @@
   </header>
 
   <div class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <h2>Our Projects</h2>
+    <div class="hero-video-container">
+      <video class="hero-video" id="heroVideo" muted playsinline>
+        <source src="l.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="play-button" id="playButton">
+      <i class="fas fa-play"></i>
+    </div>
+    <div class="hero-content" id="heroContent">
+      <h2>Bayt Maryam</h2>
+      <p>Experience the elegance of our latest masterpiece</p>
+    </div>
+    <div class="video-controls" id="videoControls">
+      <div class="duration" id="duration">0:00</div>
+      <div class="mute-btn" id="muteBtn">
+        <i class="fas fa-volume-mute"></i>
+      </div>
     </div>
   </div>
 
-  <div class="filter-container">
-    <button class="filter-btn active" data-filter="all">All Projects</button>
-    <button class="filter-btn" data-filter="ongoing">Ongoing/Completed</button>
-    <button class="filter-btn" data-filter="villa">Villa Projects</button>
-    <button class="filter-btn" data-filter="plots">Plots for Sale</button>
-  </div>
+  <section class="video-section">
+    <h3>More Projects</h3>
+    <div class="video-grid">
+      <div class="video-item">
+        <video muted playsinline>
+          <source src="project1.mp4" type="video/mp4">
+        </video>
+        <div class="video-controls">
+          <div class="duration">0:00</div>
+          <div class="mute-btn">
+            <i class="fas fa-volume-mute"></i>
+          </div>
+        </div>
+        <div class="video-overlay">
+          <i class="fas fa-play"></i>
+        </div>
+        <div class="video-title">Villa Project 1</div>
+      </div>
+      <div class="video-item">
+        <video muted playsinline>
+          <source src="project2.mp4" type="video/mp4">
+        </video>
+        <div class="video-controls">
+          <div class="duration">0:00</div>
+          <div class="mute-btn">
+            <i class="fas fa-volume-mute"></i>
+          </div>
+        </div>
+        <div class="video-overlay">
+          <i class="fas fa-play"></i>
+        </div>
+        <div class="video-title">Villa Project 2</div>
+      </div>
+    </div>
+  </section>
 
-  <section id="projects" class="projects">
-    <div class="project-box" data-category="ongoing">
-      <h3>Ongoing/Completed Projects</h3>
-      <div class="slider-container">
-        <div class="slider" id="slider1">
-          <img src="001.jpg" onclick="openModal(this.src)">
-          <img src="005.jpg" onclick="openModal(this.src)">
-          <img src="31.jpg" onclick="openModal(this.src)">
-          <img src="3D - Mr.Sabir, Vellur (1).jpg" onclick="openModal(this.src)">
-          <img src="4ee5e7f0a2c52cbbc4701cf657d14367.jpg" onclick="openModal(this.src)">
-          <img src="79fb5c8d-db1f-4720-a184-15cff8bac4b2.jpg" onclick="openModal(this.src)">
-          <img src="Ahmed perumba.jpg" onclick="openModal(this.src)">
-          <img src="Ashker 12ps.jpg" onclick="openModal(this.src)">
-          <img src="IMG-20181202-WA0004.jpg" onclick="openModal(this.src)">
-          <img src="IMG-20190104-WA0003.jpg" onclick="openModal(this.src)">
-          <img src="KASIM 3.jpg" onclick="openModal(this.src)">
-          <img src="RZK.png" onclick="openModal(this.src)">
-          <img src="WhatsApp Image 2019-12-16 at 5.11.15 PM.jpeg" onclick="openModal(this.src)">
-          <img src="WhatsApp Image 2023-08-19 at 4.51.47 PM.jpeg" onclick="openModal(this.src)">
-          <img src="WhatsApp Image 2023-08-19 at 4.51.48 PM.jpeg" onclick="openModal(this.src)">
-          <img src="WhatsApp Image 2023-08-19 at 4.51.49 PM.jpeg" onclick="openModal(this.src)">
-          <img src="WhatsApp Image 2023-08-19 at 4.51.55 PM.jpeg" onclick="openModal(this.src)"> 
-          <img src="WhatsApp Image 2023-08-19 at 4.51.56 PM.jpeg" onclick="openModal(this.src)">
-          <img src="ali maniyatt slope 4.jpg" onclick="openModal(this.src)">
-          <img src="ashkar payyannur.jpg" onclick="openModal(this.src)">
-          <img src="double 10.jpg" onclick="openModal(this.src)">
-          <img src="fareeda 3d exterior.png" onclick="openModal(this.src)">
-          <img src="frt.jpg" onclick="openModal(this.src)">
-          <img src="habeeb cheemeni.jpg" onclick="openModal(this.src)">
-          <img src="hakkeem vengara.jpg" onclick="openModal(this.src)">
-          <img src="jamal koyappara.jpg" onclick="openModal(this.src)">
-          <img src="jmsd payyanki.jpg" onclick="openModal(this.src)">
-          <img src="k 1.jpg" onclick="openModal(this.src)">
-          <img src="kabeer 3d.03.jpg" onclick="openModal(this.src)">
-          <img src="khaleel padanna.jpg" onclick="openModal(this.src)">
-          <img src="mubassira kunhimangalam.jpg" onclick="openModal(this.src)">
-          <img src="muhsina kunhimangalam.jpg" onclick="openModal(this.src)">
-          <img src="navas 5-zoomd.jpg" onclick="openModal(this.src)">
-          <img src="ps 02.jpg" onclick="openModal(this.src)">
-          <img src="raz pay.jpg" onclick="openModal(this.src)">
-          <img src="raz rn pay.jpg" onclick="openModal(this.src)">
-          <img src="shajahan.jpg" onclick="openModal(this.src)">
-          <img src="tito front.jpg" onclick="openModal(this.src)">
-        </div>
-        <div class="slider-controls" id="slider1-dots"></div>
-        <div class="slider-nav prev" onclick="changeSlide('slider1', -1)">
-          <i class="fas fa-chevron-left"></i>
-        </div>
-        <div class="slider-nav next" onclick="changeSlide('slider1', 1)">
-          <i class="fas fa-chevron-right"></i>
+  <section class="gallery-section">
+    <h3>Project Gallery</h3>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://i.imgur.com/1a2b3c4d.jpg" alt="Project Image 1">
+        <div class="gallery-overlay">
+          <i class="fas fa-search-plus"></i>
         </div>
       </div>
-    </div>
-    
-    <div class="project-box" data-category="villa">
-      <h3>Villa Projects</h3>
-      <div class="slider-container">
-        <div class="slider" id="slider2">
-          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_6b07061fef194432a3ad35648ab3950b~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_a182131f48064dc696b00962012ccd6d~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_e97747aef854440eb720a5aff81bd206~mv2.jpg" onclick="openModal(this.src)">
-        </div>
-        <div class="slider-controls" id="slider2-dots"></div>
-        <div class="slider-nav prev" onclick="changeSlide('slider2', -1)">
-          <i class="fas fa-chevron-left"></i>
-        </div>
-        <div class="slider-nav next" onclick="changeSlide('slider2', 1)">
-          <i class="fas fa-chevron-right"></i>
+      <div class="gallery-item">
+        <img src="https://i.imgur.com/5e6f7g8h.jpg" alt="Project Image 2">
+        <div class="gallery-overlay">
+          <i class="fas fa-search-plus"></i>
         </div>
       </div>
-    </div>
-    
-    <div class="project-box" data-category="plots">
-      <h3>Plots for Sale</h3>
-      <div class="slider-container">
-        <div class="slider" id="slider3">
-          <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_451ab2715c984e97af13e75d7cee2690~mv2.png" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_27ce70edcca7409c97974c5623ccbd3f~mv2.jpg" onclick="openModal(this.src)">
-          <img src="https://static.wixstatic.com/media/4040b7_0abe521d8e0c44a2b2f694a2f07036d0~mv2.jpg" onclick="openModal(this.src)">
+      <div class="gallery-item">
+        <img src="https://i.imgur.com/9i0j1k2l.jpg" alt="Project Image 3">
+        <div class="gallery-overlay">
+          <i class="fas fa-search-plus"></i>
         </div>
-        <div class="slider-controls" id="slider3-dots"></div>
-        <div class="slider-nav prev" onclick="changeSlide('slider3', -1)">
-          <i class="fas fa-chevron-left"></i>
+      </div>
+      <div class="gallery-item">
+        <img src="https://i.imgur.com/3m4n5o6p.jpg" alt="Project Image 4">
+        <div class="gallery-overlay">
+          <i class="fas fa-search-plus"></i>
         </div>
-        <div class="slider-nav next" onclick="changeSlide('slider3', 1)">
-          <i class="fas fa-chevron-right"></i>
+      </div>
+      <div class="gallery-item">
+        <img src="https://i.imgur.com/7q8r9s0t.jpg" alt="Project Image 5">
+        <div class="gallery-overlay">
+          <i class="fas fa-search-plus"></i>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://i.imgur.com/2u3v4w5x.jpg" alt="Project Image 6">
+        <div class="gallery-overlay">
+          <i class="fas fa-search-plus"></i>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Modal for image popup -->
-  <div class="modal" id="imageModal" onclick="closeModal()">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    <img id="modalImg" src="">
-  </div>
-
   <footer>
     &copy; 2025 Meridian<sup class="reg">®️</sup> Arch Studio. All rights reserved.
   </footer>
-
-  <!-- Floating Social Icons -->
-  <div class="social-icons">
-    <a href="#"><i class="fab fa-facebook-f"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-  </div>
 
   <!-- Back to Top Button -->
   <div class="back-to-top" id="backToTop">
@@ -759,21 +1248,6 @@
         document.getElementById('loader').classList.add('hidden');
       }, 500);
     });
-
-    // Scroll animations
-    const projectsSection = document.querySelector('.projects');
-    
-    function checkScroll() {
-      const sectionTop = projectsSection.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-      
-      if (sectionTop < windowHeight * 0.75) {
-        projectsSection.classList.add('visible');
-      }
-    }
-    
-    window.addEventListener('scroll', checkScroll);
-    checkScroll(); // Check on load
 
     // Back to top button
     const backToTopButton = document.getElementById('backToTop');
@@ -793,111 +1267,189 @@
       });
     });
 
-    // Filter functionality
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectBoxes = document.querySelectorAll('.project-box');
+    // Video control variables
+    const heroVideo = document.getElementById('heroVideo');
+    const playButton = document.getElementById('playButton');
+    const heroContent = document.getElementById('heroContent');
+    const videoControls = document.getElementById('videoControls');
+    const muteBtn = document.getElementById('muteBtn');
+    const durationEl = document.getElementById('duration');
     
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Update active button
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+    let isPlaying = false;
+    let isMuted = true;
+    let inactivityTimer;
+
+    // Reset inactivity timer
+    function resetInactivityTimer() {
+      clearTimeout(inactivityTimer);
+      heroContent.classList.remove('fade-out');
+      playButton.classList.remove('fade-out');
+      videoControls.classList.remove('fade-out');
+      
+      inactivityTimer = setTimeout(() => {
+        heroContent.classList.add('fade-out');
+        playButton.classList.add('fade-out');
+        videoControls.classList.add('fade-out');
+      }, 2000);
+    }
+
+    // Add event listeners for inactivity
+    document.addEventListener('click', resetInactivityTimer);
+    document.addEventListener('mousemove', resetInactivityTimer);
+    document.addEventListener('keydown', resetInactivityTimer);
+    document.addEventListener('touchstart', resetInactivityTimer);
+
+    // Video play/pause functionality
+    playButton.addEventListener('click', () => {
+      if (isPlaying) {
+        heroVideo.pause();
+        playButton.innerHTML = '<i class="fas fa-play"></i>';
+      } else {
+        heroVideo.play();
+        heroVideo.muted = false;
+        isMuted = false;
+        muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+        playButton.innerHTML = '<i class="fas fa-pause"></i>';
+        resetInactivityTimer();
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // Auto-play video on load with user interaction
+    heroVideo.addEventListener('loadedmetadata', () => {
+      // Wait for user interaction to play video
+    });
+
+    // Handle video end
+    heroVideo.addEventListener('ended', () => {
+      isPlaying = false;
+      playButton.innerHTML = '<i class="fas fa-play"></i>';
+    });
+
+    // Mute/unmute functionality
+    muteBtn.addEventListener('click', () => {
+      isMuted = !isMuted;
+      heroVideo.muted = isMuted;
+      
+      if (isMuted) {
+        muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+      } else {
+        muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+      }
+      resetInactivityTimer();
+    });
+
+    // Update duration
+    heroVideo.addEventListener('timeupdate', () => {
+      const currentMinutes = Math.floor(heroVideo.currentTime / 60);
+      const currentSeconds = Math.floor(heroVideo.currentTime % 60);
+      const durationMinutes = Math.floor(heroVideo.duration / 60) || 0;
+      const durationSeconds = Math.floor(heroVideo.duration % 60) || 0;
+      
+      durationEl.textContent = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds} / ${durationMinutes}:${durationSeconds < 10 ? '0' : ''}${durationSeconds}`;
+    });
+
+    // Video overlay play functionality for other videos
+    const videoItems = document.querySelectorAll('.video-item');
+    
+    videoItems.forEach(item => {
+      const video = item.querySelector('video');
+      const overlay = item.querySelector('.video-overlay');
+      const muteBtn = item.querySelector('.mute-btn');
+      const durationEl = item.querySelector('.duration');
+      let isPlaying = false;
+      let isMuted = true;
+      
+      overlay.addEventListener('click', () => {
+        if (isPlaying) {
+          video.pause();
+          overlay.style.opacity = '1';
+        } else {
+          video.play();
+          video.muted = false;
+          isMuted = false;
+          muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+          overlay.style.opacity = '0';
+        }
+        isPlaying = !isPlaying;
+      });
+      
+      video.addEventListener('play', () => {
+        overlay.style.opacity = '0';
+      });
+      
+      video.addEventListener('pause', () => {
+        overlay.style.opacity = '1';
+        isPlaying = false;
+      });
+      
+      video.addEventListener('ended', () => {
+        isPlaying = false;
+        overlay.style.opacity = '1';
+      });
+      
+      muteBtn.addEventListener('click', () => {
+        isMuted = !isMuted;
+        video.muted = isMuted;
         
-        const filter = button.getAttribute('data-filter');
+        if (isMuted) {
+          muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        } else {
+          muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+        }
+      });
+      
+      video.addEventListener('timeupdate', () => {
+        const currentMinutes = Math.floor(video.currentTime / 60);
+        const currentSeconds = Math.floor(video.currentTime % 60);
+        const durationMinutes = Math.floor(video.duration / 60) || 0;
+        const durationSeconds = Math.floor(video.duration % 60) || 0;
         
-        projectBoxes.forEach(box => {
-          if (filter === 'all' || box.getAttribute('data-category') === filter) {
-            box.style.display = 'block';
-            setTimeout(() => {
-              box.style.opacity = '1';
-              box.style.transform = 'translateY(0)';
-            }, 10);
-          } else {
-            box.style.opacity = '0';
-            box.style.transform = 'translateY(20px)';
-            setTimeout(() => {
-              box.style.display = 'none';
-            }, 300);
-          }
+        durationEl.textContent = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds} / ${durationMinutes}:${durationSeconds < 10 ? '0' : ''}${durationSeconds}`;
+      });
+    });
+
+    // Gallery image click to enlarge (simplified modal)
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    galleryItems.forEach(item => {
+      const img = item.querySelector('img');
+      const overlay = item.querySelector('.gallery-overlay');
+      
+      overlay.addEventListener('click', () => {
+        // Create a simple modal for image viewing
+        const modal = document.createElement('div');
+        modal.style.position = 'fixed';
+        modal.style.top = '0';
+        modal.style.left = '0';
+        modal.style.width = '100%';
+        modal.style.height = '100%';
+        modal.style.background = 'rgba(0,0,0,0.9)';
+        modal.style.display = 'flex';
+        modal.style.justifyContent = 'center';
+        modal.style.alignItems = 'center';
+        modal.style.zIndex = '10000';
+        modal.style.cursor = 'pointer';
+        
+        const modalImg = document.createElement('img');
+        modalImg.src = img.src;
+        modalImg.style.maxWidth = '90%';
+        modalImg.style.maxHeight = '90vh';
+        modalImg.style.borderRadius = '10px';
+        
+        modal.appendChild(modalImg);
+        document.body.appendChild(modal);
+        
+        modal.addEventListener('click', () => {
+          document.body.removeChild(modal);
         });
       });
     });
 
-    // Slider functionality
-    function initSlider(sliderId) {
-      const slider = document.getElementById(sliderId);
-      const images = slider.querySelectorAll('img');
-      const dotsContainer = document.getElementById(sliderId + '-dots');
-      let currentIndex = 0;
-      
-      // Create dots
-      images.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.classList.add('slider-dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(sliderId, index));
-        dotsContainer.appendChild(dot);
-      });
-      
-      // Auto slide
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % images.length;
-        updateSlider(sliderId, currentIndex);
-      }, 3000);
-      
-      return currentIndex;
-    }
-    
-    function updateSlider(sliderId, index) {
-      const slider = document.getElementById(sliderId);
-      const dots = document.querySelectorAll(`#${sliderId}-dots .slider-dot`);
-      
-      slider.style.transform = `translateX(-${index * 100}%)`;
-      
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-      });
-    }
-    
-    function goToSlide(sliderId, index) {
-      updateSlider(sliderId, index);
-    }
-    
-    function changeSlide(sliderId, direction) {
-      const slider = document.getElementById(sliderId);
-      const images = slider.querySelectorAll('img');
-      const dots = document.querySelectorAll(`#${sliderId}-dots .slider-dot`);
-      let activeIndex = 0;
-      
-      dots.forEach((dot, i) => {
-        if (dot.classList.contains('active')) {
-          activeIndex = i;
-        }
-      });
-      
-      const newIndex = (activeIndex + direction + images.length) % images.length;
-      updateSlider(sliderId, newIndex);
-    }
-    
-    // Initialize sliders
-    ['slider1', 'slider2', 'slider3'].forEach(initSlider);
-
-    // Modal functionality
-    function openModal(src) {
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImg');
-      modalImg.src = src;
-      modal.style.display = 'flex';
-    }
-    
-    function closeModal() {
-      document.getElementById('imageModal').style.display = 'none';
-    }
-
     // Parallax effect for hero section
     window.addEventListener('scroll', () => {
       const scrollPosition = window.pageYOffset;
-      const heroBg = document.querySelector('.hero-bg');
+      const heroBg = document.querySelector('.hero-video-container');
       if (heroBg) {
         heroBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
       }
@@ -905,3 +1457,140 @@
   </script>
 </body>
 </html>
+<!-- Add this HTML where you want the social icons to appear (usually before </body>) -->
+<div class="social-icons">
+  <a href="https://www.instagram.com/meridian_arch_studio" target="_blank" title="Instagram">
+    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram">
+  </a>
+  <a href="https://wa.me/7994000399" target="_blank" title="WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+  </a>
+  <a href="https://www.facebook.com/Meridian Archstudio" target="_blank" title="Facebook">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+  </a>
+</div>
+
+<!-- Add this CSS to your existing stylesheet -->
+<style>
+  /* Social Icons Styling */
+  .social-icons {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 1000;
+  }
+
+  .social-icons a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: rgba(31, 31, 31, 0.8);
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    text-decoration: none;
+  }
+
+  .social-icons a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ffcc00, #ff9900);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .social-icons a:hover {
+    transform: translateY(-5px) scale(1.1);
+    background: rgba(31, 31, 31, 0.9);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .social-icons a:hover::before {
+    opacity: 0.1;
+  }
+
+  .social-icons img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) saturate(100%) invert(100%) hue-rotate(180deg);
+    transition: filter 0.3s ease;
+  }
+
+  .social-icons a:hover img {
+    filter: brightness(0) saturate(100%) invert(80%) hue-rotate(180deg);
+  }
+
+  /* Social icon animations */
+  .social-icons a:nth-child(1) {
+    animation: float 3s ease-in-out infinite;
+    animation-delay: 0s;
+  }
+
+  .social-icons a:nth-child(2) {
+    animation: float 3s ease-in-out infinite;
+    animation-delay: 0.2s;
+  }
+
+  .social-icons a:nth-child(3) {
+    animation: float 3s ease-in-out infinite;
+    animation-delay: 0.4s;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  /* Mobile responsiveness for social icons */
+  @media (max-width: 768px) {
+    .social-icons {
+      bottom: 20px;
+      right: 20px;
+    }
+    
+    .social-icons a {
+      width: 45px;
+      height: 45px;
+    }
+    
+    .social-icons img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .social-icons {
+      bottom: 15px;
+      right: 15px;
+    }
+    
+    .social-icons a {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .social-icons img {
+      width: 18px;
+      height: 18px;
+    }
+  }
+</style>
+
+<!-- No JavaScript needed for this component -->
