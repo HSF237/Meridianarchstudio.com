@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* --- RESET & GLOBAL --- */
     * {
       margin: 0; 
       padding: 0; 
@@ -22,38 +23,25 @@
       overflow-x: hidden;
     }
     
-    /* Scrollbar Styling */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #f1f1f1;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #888;
-      border-radius: 5px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #555;
-    }
+    /* --- SCROLLBAR --- */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #888; border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: #555; }
     
-    /* Animated Background */
+    /* --- ANIMATED BACKGROUND --- */
     .animated-bg {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: -1;
       opacity: 0.05;
     }
     .animated-bg::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: linear-gradient(45deg, #1f1f1f, #333, #1f1f1f);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
@@ -64,14 +52,13 @@
       100% { background-position: 0% 50%; }
     }
     
-    /* Header Styles */
+    /* --- HEADER & NAV --- */
     header {
       background: rgba(31, 31, 31, 0.95);
       backdrop-filter: blur(10px);
       color: #fff;
       padding: 15px 20px;
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
       position: sticky;
@@ -81,14 +68,8 @@
       animation: slideDown 0.8s ease-out;
     }
     @keyframes slideDown {
-      from {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
     
     header h1 {
@@ -108,6 +89,22 @@
       margin-left: 2px;
     }
     
+    /* --- HAMBURGER MENU --- */
+    .menu-toggle {
+      display: none; /* Hidden on desktop */
+      cursor: pointer;
+      font-size: 24px;
+      color: #fff;
+      z-index: 1002;
+    }
+    .menu-toggle:hover { color: #ffcc00; }
+    
+    /* --- NAV LINKS --- */
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    
     nav a {
       color: #fff;
       text-decoration: none;
@@ -121,24 +118,16 @@
     nav a::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
       background: #ffcc00;
       transition: width 0.3s ease;
     }
     
-    nav a:hover {
-      color: #ffcc00;
-      transform: translateY(-2px);
-    }
+    nav a:hover { color: #ffcc00; transform: translateY(-2px); }
+    nav a:hover::after { width: 100%; }
     
-    nav a:hover::after {
-      width: 100%;
-    }
-    
-    /* Hero Banner */
+    /* --- HERO SECTION --- */
     .hero {
       height: 700px;
       position: relative;
@@ -150,10 +139,8 @@
     
     .hero-video-container {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: -1;
       overflow: hidden;
     }
@@ -161,7 +148,7 @@
     .hero-video {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover; /* Ensures video fits screen perfectly */
       background-color: #000;
     }
     
@@ -170,13 +157,12 @@
       position: absolute;
       inset: 0;
       background: rgba(0,0,0,0.4);
-      z-index: -1;
+      z-index: 0;
     }
     
     .hero-content {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
       color: #fff;
@@ -187,19 +173,11 @@
       transition: opacity 2s ease;
     }
     
-    .hero-content.fade-out {
-      opacity: 0;
-    }
+    .hero-content.fade-out { opacity: 0; }
     
     @keyframes fadeInUp {
-      from {
-        transform: translate(-50%, -30%);
-        opacity: 0;
-      }
-      to {
-        transform: translate(-50%, -50%);
-        opacity: 1;
-      }
+      from { transform: translate(-50%, -30%); opacity: 0; }
+      to { transform: translate(-50%, -50%); opacity: 1; }
     }
     
     .hero h2 {
@@ -213,11 +191,9 @@
     .hero h2::after {
       content: '';
       position: absolute;
-      bottom: -10px;
-      left: 50%;
+      bottom: -10px; left: 50%;
       transform: translateX(-50%);
-      width: 80px;
-      height: 3px;
+      width: 80px; height: 3px;
       background: #ffcc00;
     }
     
@@ -229,11 +205,9 @@
     
     .play-button {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 100px;
-      height: 100px;
+      width: 100px; height: 100px;
       background: rgba(255, 255, 255, 0.9);
       border-radius: 50%;
       display: flex;
@@ -250,23 +224,16 @@
       transform: translate(-50%, -50%) scale(1.1);
     }
     
-    .play-button.fade-out {
-      opacity: 0;
-    }
+    .play-button.fade-out { opacity: 0; }
     
-    .play-button i {
-      font-size: 50px;
-      color: #1f1f1f;
-    }
+    .play-button i { font-size: 50px; color: #1f1f1f; }
     
-    /* Video Controls */
+    /* --- VIDEO CONTROLS --- */
     .video-controls {
       position: absolute;
-      bottom: 20px;
-      left: 50%;
+      bottom: 20px; left: 50%;
       transform: translateX(-50%);
-      width: 90%;
-      max-width: 800px;
+      width: 90%; max-width: 800px;
       background: rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(10px);
       border-radius: 10px;
@@ -278,14 +245,8 @@
       transition: opacity 2s ease;
     }
     
-    .video-controls.fade-out {
-      opacity: 0;
-    }
-    
-    .duration {
-      color: #fff;
-      font-size: 14px;
-    }
+    .video-controls.fade-out { opacity: 0; }
+    .duration { color: #fff; font-size: 14px; }
     
     .mute-btn {
       color: #fff;
@@ -293,17 +254,10 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
+    .mute-btn:hover { color: #ffcc00; transform: scale(1.1); }
     
-    .mute-btn:hover {
-      color: #ffcc00;
-      transform: scale(1.1);
-    }
-    
-    /* Video Section */
-    .video-section {
-      padding: 60px 20px;
-      background: #fff;
-    }
+    /* --- SECTIONS --- */
+    .video-section { padding: 60px 20px; background: #fff; }
     
     .video-section h3 {
       text-align: center;
@@ -318,11 +272,9 @@
     .video-section h3::after {
       content: '';
       position: absolute;
-      bottom: -10px;
-      left: 50%;
+      bottom: -10px; left: 50%;
       transform: translateX(-50%);
-      width: 80px;
-      height: 3px;
+      width: 80px; height: 3px;
       background: #ffcc00;
     }
     
@@ -343,38 +295,24 @@
       height: 300px;
     }
     
-    .video-item:hover {
-      transform: translateY(-10px);
-    }
-    
-    .video-item video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .video-item:hover { transform: translateY(-10px); }
+    .video-item video { width: 100%; height: 100%; object-fit: cover; }
     
     .video-item .video-controls {
       position: absolute;
-      bottom: 20px;
-      left: 50%;
+      bottom: 20px; left: 50%;
       transform: translateX(-50%);
-      width: 90%;
-      max-width: 400px;
+      width: 90%; max-width: 400px;
     }
     
     .video-item .mute-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      z-index: 4;
+      position: absolute; top: 10px; right: 10px; z-index: 4;
     }
     
     .video-overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.3);
       display: flex;
       justify-content: center;
@@ -383,32 +321,19 @@
       transition: opacity 0.3s ease;
     }
     
-    .video-item:hover .video-overlay {
-      opacity: 1;
-    }
-    
-    .video-overlay i {
-      font-size: 50px;
-      color: #fff;
-      cursor: pointer;
-    }
+    .video-item:hover .video-overlay { opacity: 1; }
+    .video-overlay i { font-size: 50px; color: #fff; cursor: pointer; }
     
     .video-title {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 20px;
+      bottom: 0; left: 0;
+      width: 100%; padding: 20px;
       background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-      color: #fff;
-      text-align: center;
+      color: #fff; text-align: center;
     }
     
-    /* Image Gallery */
-    .gallery-section {
-      padding: 60px 20px;
-      background: #f8f8f8;
-    }
+    /* --- GALLERY --- */
+    .gallery-section { padding: 60px 20px; background: #f8f8f8; }
     
     .gallery-section h3 {
       text-align: center;
@@ -423,11 +348,9 @@
     .gallery-section h3::after {
       content: '';
       position: absolute;
-      bottom: -10px;
-      left: 50%;
+      bottom: -10px; left: 50%;
       transform: translateX(-50%);
-      width: 80px;
-      height: 3px;
+      width: 80px; height: 3px;
       background: #ffcc00;
     }
     
@@ -448,22 +371,13 @@
       height: 250px;
     }
     
-    .gallery-item:hover {
-      transform: translateY(-10px);
-    }
-    
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    .gallery-item:hover { transform: translateY(-10px); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
     
     .gallery-overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.4);
       display: flex;
       justify-content: center;
@@ -472,17 +386,10 @@
       transition: opacity 0.3s ease;
     }
     
-    .gallery-item:hover .gallery-overlay {
-      opacity: 1;
-    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-overlay i { font-size: 40px; color: #fff; cursor: pointer; }
     
-    .gallery-overlay i {
-      font-size: 40px;
-      color: #fff;
-      cursor: pointer;
-    }
-    
-    /* Footer */
+    /* --- FOOTER --- */
     footer {
       background: #1f1f1f;
       color: white;
@@ -494,18 +401,15 @@
     footer::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
       background: linear-gradient(90deg, transparent, #ffcc00, transparent);
     }
     
-    /* Floating Social Icons */
+    /* --- FLOATING SOCIALS --- */
     .social-icons {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 30px; right: 30px;
       display: flex;
       flex-direction: column;
       gap: 15px;
@@ -516,14 +420,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 45px;
-      height: 45px;
+      width: 50px; height: 50px;
       background: rgba(31, 31, 31, 0.8);
       border-radius: 50%;
       color: white;
       font-size: 18px;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
     }
     
     .social-icons a:hover {
@@ -532,13 +436,11 @@
       transform: translateY(-5px);
     }
     
-    /* Loading Animation */
+    /* --- LOADER --- */
     .loader {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: #1f1f1f;
       display: flex;
       justify-content: center;
@@ -547,37 +449,24 @@
       transition: opacity 0.5s ease, visibility 0.5s ease;
     }
     
-    .loader.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
     
     .loader-circle {
-      width: 50px;
-      height: 50px;
+      width: 50px; height: 50px;
       border: 5px solid rgba(255, 255, 255, 0.3);
       border-top-color: #ffcc00;
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
     
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     
-    /* Animation for fade in */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    
-    /* Back to Top Button */
+    /* --- BACK TO TOP --- */
     .back-to-top {
       position: fixed;
-      bottom: 20px;
-      left: 20px;
-      width: 45px;
-      height: 45px;
+      bottom: 20px; left: 20px;
+      width: 45px; height: 45px;
       background: rgba(31, 31, 31, 0.8);
       color: white;
       border-radius: 50%;
@@ -585,530 +474,65 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      opacity: 0;
-      visibility: hidden;
+      opacity: 0; visibility: hidden;
       transition: all 0.3s ease;
       z-index: 1000;
     }
     
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-    
+    .back-to-top.visible { opacity: 1; visibility: visible; }
     .back-to-top:hover {
       background: #ffcc00;
       color: #1f1f1f;
       transform: translateY(-5px);
     }
     
-    /* Responsive Design */
-    @media(max-width: 768px) {
-      .hero h2 { 
-        font-size: 36px; 
+    /* --- RESPONSIVE MEDIA QUERIES --- */
+    @media (min-width: 992px) {
+      .menu-toggle { display: none; }
+      nav { display: flex; justify-content: flex-end; }
+    }
+    
+    @media (max-width: 991px) {
+      header {
+        height: 70px;
+        flex-wrap: nowrap;
+        padding: 0 20px;
       }
-      header h1 { 
-        font-size: 18px; 
+      
+      .menu-toggle { display: block; }
+      
+      nav {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 70%; height: 100vh;
+        background: #1f1f1f;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.4s ease;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        z-index: 1001;
       }
-      .video-grid {
-        grid-template-columns: 1fr;
-      }
-      .gallery-grid {
-        grid-template-columns: 1fr;
-      }
+      
+      nav.active { right: 0; }
+      
+      nav a { margin: 20px 0; font-size: 18px; }
+      
+      .hero { height: 500px; }
+      .hero h2 { font-size: 36px; }
+      
+      .video-grid, .gallery-grid { grid-template-columns: 1fr; }
+      
       .social-icons {
-        bottom: 10px;
-        right: 10px;
+        bottom: 20px; right: 20px;
       }
-      .social-icons a {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-      }
+      
+      .social-icons a { width: 45px; height: 45px; font-size: 16px; }
+      
       .back-to-top {
-        bottom: 10px;
-        left: 10px;
-        width: 40px;
-        height: 40px;
+        bottom: 10px; left: 10px;
+        width: 40px; height: 40px;
       }
-      .video-controls {
-        bottom: 10px;
-        padding: 5px 10px;
-      }
-      .duration {
-        font-size: 12px;
-      }
-      /* Add these styles to your existing CSS or replace the relevant sections */
-
-/* Header/Navbar improvements */
-header {
-  background: rgba(31, 31, 31, 0.95);
-  backdrop-filter: blur(10px);
-  color: #fff;
-  padding: 15px 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  animation: slideDown 0.8s ease-out;
-}
-
-header h1 {
-  font-size: 24px; /* Increased for better visibility */
-  background: linear-gradient(90deg, #ffcc00, #ff9900);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 700;
-  letter-spacing: 1px;
-  animation: fadeIn 1s ease-out;
-  margin: 0; /* Remove default margin */
-}
-
-nav {
-  display: flex;
-  gap: 20px; /* Improved spacing between nav items */
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  margin-top: 10px; /* Add space below logo on mobile */
-}
-
-nav a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 16px; /* Slightly larger for better readability */
-  transition: all 0.3s ease;
-  padding: 8px 15px; /* Add padding for better click area */
-  border-radius: 4px;
-}
-
-nav a:hover {
-  color: #ffcc00;
-  transform: translateY(-2px);
-  background: rgba(255, 204, 0, 0.1); /* Add subtle background on hover */
-}
-
-/* Footer improvements */
-footer {
-  background: #1f1f1f;
-  color: white;
-  text-align: center;
-  padding: 25px 20px; /* Increased padding */
-  position: relative;
-  margin-top: 40px; /* Add space above footer */
-}
-
-footer p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #ffcc00, transparent);
-}
-
-/* Mobile responsiveness improvements */
-@media(max-width: 768px) {
-  /* Header adjustments for mobile */
-  header {
-    flex-direction: column;
-    align-items: center;
-    padding: 15px 10px;
-  }
-  
-  header h1 {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  nav {
-    margin-top: 0;
-    gap: 15px;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  nav a {
-    font-size: 14px;
-    padding: 6px 12px;
-  }
-  
-  /* Hero section adjustments */
-  .hero {
-    height: 500px; /* Reduced height for mobile */
-  }
-  
-  .hero h2 {
-    font-size: 32px; /* Smaller heading on mobile */
-  }
-  
-  .hero p {
-    font-size: 16px; /* Smaller paragraph on mobile */
-  }
-  
-  /* Video controls adjustments */
-  .video-controls {
-    bottom: 10px;
-    padding: 8px 15px;
-  }
-  
-  .duration {
-    font-size: 12px;
-  }
-  
-  .mute-btn i {
-    font-size: 18px;
-  }
-  
-  /* Video grid adjustments */
-  .video-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
-  .video-item {
-    height: 250px; /* Smaller video items on mobile */
-  }
-  
-  /* Gallery adjustments */
-  .gallery-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
-  .gallery-item {
-    height: 200px; /* Smaller gallery items on mobile */
-  }
-  
-    /* Social Icons Styling */
-.social-icons {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 1000;
-}
-
-.social-icons a {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  background: rgba(31, 31, 31, 0.8);
-  border-radius: 50%;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-}
-
-.social-icons a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, #ffcc00, #ff9900);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-}
-
-.social-icons a:hover {
-  transform: translateY(-5px) scale(1.1);
-  background: rgba(31, 31, 31, 0.9);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-.social-icons a:hover::before {
-  opacity: 0.1;
-}
-
-.social-icons img {
-  width: 24px;
-  height: 24px;
-  filter: brightness(0) saturate(100%) invert(100%) hue-rotate(180deg);
-  transition: filter 0.3s ease;
-}
-
-.social-icons a:hover img {
-  filter: brightness(0) saturate(100%) invert(80%) hue-rotate(180deg);
-}
-
-/* Social icon animations */
-.social-icons a:nth-child(1) {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 0s;
-}
-
-.social-icons a:nth-child(2) {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 0.2s;
-}
-
-.social-icons a:nth-child(3) {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 0.4s;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-/* Social Icons Styling */
-.social-icons {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 1000;
-}
-
-.social-icons a {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  background: rgba(31, 31, 31, 0.8);
-  border-radius: 50%;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-}
-
-.social-icons a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, #ffcc00, #ff9900);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-}
-
-.social-icons a:hover {
-  transform: translateY(-5px) scale(1.1);
-  background: rgba(31, 31, 31, 0.9);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-.social-icons a:hover::before {
-  opacity: 0.1;
-}
-
-.social-icons img {
-  width: 24px;
-  height: 24px;
-  filter: brightness(0) saturate(100%) invert(100%) hue-rotate(180deg);
-  transition: filter 0.3s ease;
-}
-
-.social-icons a:hover img {
-  filter: brightness(0) saturate(100%) invert(80%) hue-rotate(180deg);
-}
-
-/* Social icon animations */
-.social-icons a:nth-child(1) {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 0s;
-}
-
-.social-icons a:nth-child(2) {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 0.2s;
-}
-
-.social-icons a:nth-child(3) {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 0.4s;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-/* Social Icons Styling */
-.social-icons {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  z-index: 1000;
-}
-
-.social-icons a {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  background: rgba(31, 31, 31, 0.8);
-  border-radius: 50%;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-}
-
-.social-icons a::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, #ffcc00, #ff9900);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-}
-
-.social-icons a:hover {
-  transform: translateY(-5px) scale(1.1);
-  background: rgba(31, 31, 31, 0.9);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-.social-icons a:hover::before {
-  opacity: 0.1;
-}
-
-.social-icons img {
-  width: 24px;
-  height: 24px;
-  filter: brightness(0) saturate(100%) invert(100%) hue-rotate(180deg);
-  transition: filter 0.3s ease;
-}
-
-.social-icons a:hover img {
-  filter: brightness(0) saturate(100%) invert(80%) hue-rotate(180deg);
-}
-
-/* Social icon animations */
-.social-icons a:nth-child(1) {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 0s;
-}
-
-.social-icons a:nth-child(2) {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 0.2s;
-}
-
-.social-icons a:nth-child(3) {
-  animation: float 3s ease-in-out infinite;
-  animation-delay: 0.4s;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-/* Mobile responsiveness for social icons */
-@media (max-width: 10px) {
-  .social-icons {
-    bottom: 20px;
-    right: 20px;
-  }
-  
-  .social-icons a {
-    width: 45px;
-    height: 45px;
-  }
-  
-  .social-icons img {
-    width: 20px;
-    height: 20px;
-  }
-}
-
-@media (max-width: 20px) {
-  .social-icons {
-    bottom: 15px;
-    right: 15px;
-  }
-  
-  .social-icons a {
-    width: 40px;
-    height: 40px;
-  }
-  
-  .social-icons img {
-    width: 18px;
-    height: 18px;
-  }
-}
-}
-
-@media(max-width: 20px) {
-  /* Extra adjustments for very small screens */
-  header h1 {
-    font-size: 18px;
-  }
-  
-  nav a {
-    font-size: 13px;
-    padding: 5px 10px;
-  }
-  
-  .hero h2 {
-    font-size: 28px;
-  }
-  
-  .hero p {
-    font-size: 14px;
-  }
-  
-  .video-controls {
-    padding: 6px 12px;
-  }
-  
-  .duration {
-    font-size: 11px;
-  }
-  
-}
     }
   </style>
 </head>
@@ -1121,9 +545,13 @@ footer::before {
   <!-- Animated Background -->
   <div class="animated-bg"></div>
 
+  <!-- Header -->
   <header>
+    <div class="menu-toggle" id="mobile-menu">
+      <i class="fas fa-bars"></i>
+    </div>
     <h1>Meridian Arch Studio</h1>
-    <nav>
+    <nav id="nav-list">
       <a href="index.html">Home</a>
       <a href="projects.html">Projects</a>
       <a href="about.html">About Us</a>
@@ -1132,9 +560,10 @@ footer::before {
     </nav>
   </header>
 
+  <!-- Hero Section -->
   <div class="hero">
     <div class="hero-video-container">
-      <video class="hero-video" id="heroVideo" muted playsinline>
+      <video class="hero-video" id="heroVideo" muted playsinline loop>
         <source src="Untitled design (1).mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -1154,87 +583,87 @@ footer::before {
     </div>
   </div>
 
+  <!-- Video Section -->
   <section class="video-section">
     <h3>More Projects</h3>
     <div class="video-grid">
       <div class="video-item">
-        <video muted playsinline>
+        <video muted playsinline loop poster="https://picsum.photos/seed/arch1/600/400">
           <source src="project1.mp4" type="video/mp4">
         </video>
-        <div class="video-controls">
-          <div class="duration">0:00</div>
-          <div class="mute-btn">
-            <i class="fas fa-volume-mute"></i>
-          </div>
-        </div>
         <div class="video-overlay">
           <i class="fas fa-play"></i>
         </div>
         <div class="video-title">Villa Project 1</div>
-      </div>
-      <div class="video-item">
-        <video muted playsinline>
-          <source src="project2.mp4" type="video/mp4">
-        </video>
         <div class="video-controls">
           <div class="duration">0:00</div>
-          <div class="mute-btn">
-            <i class="fas fa-volume-mute"></i>
-          </div>
+          <div class="mute-btn"><i class="fas fa-volume-mute"></i></div>
         </div>
+      </div>
+      <div class="video-item">
+        <video muted playsinline loop poster="https://picsum.photos/seed/arch2/600/400">
+          <source src="project2.mp4" type="video/mp4">
+        </video>
         <div class="video-overlay">
           <i class="fas fa-play"></i>
         </div>
         <div class="video-title">Villa Project 2</div>
+        <div class="video-controls">
+          <div class="duration">0:00</div>
+          <div class="mute-btn"><i class="fas fa-volume-mute"></i></div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- Gallery Section -->
   <section class="gallery-section">
     <h3>Project Gallery</h3>
     <div class="gallery-grid">
       <div class="gallery-item">
-        <img src="https://i.imgur.com/1a2b3c4d.jpg" alt="Project Image 1">
-        <div class="gallery-overlay">
-          <i class="fas fa-search-plus"></i>
-        </div>
+        <img src="https://picsum.photos/seed/gal1/400/300" alt="Project Image 1">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
       </div>
       <div class="gallery-item">
-        <img src="https://i.imgur.com/5e6f7g8h.jpg" alt="Project Image 2">
-        <div class="gallery-overlay">
-          <i class="fas fa-search-plus"></i>
-        </div>
+        <img src="https://picsum.photos/seed/gal2/400/300" alt="Project Image 2">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
       </div>
       <div class="gallery-item">
-        <img src="https://i.imgur.com/9i0j1k2l.jpg" alt="Project Image 3">
-        <div class="gallery-overlay">
-          <i class="fas fa-search-plus"></i>
-        </div>
+        <img src="https://picsum.photos/seed/gal3/400/300" alt="Project Image 3">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
       </div>
       <div class="gallery-item">
-        <img src="https://i.imgur.com/3m4n5o6p.jpg" alt="Project Image 4">
-        <div class="gallery-overlay">
-          <i class="fas fa-search-plus"></i>
-        </div>
+        <img src="https://picsum.photos/seed/gal4/400/300" alt="Project Image 4">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
       </div>
       <div class="gallery-item">
-        <img src="https://i.imgur.com/7q8r9s0t.jpg" alt="Project Image 5">
-        <div class="gallery-overlay">
-          <i class="fas fa-search-plus"></i>
-        </div>
+        <img src="https://picsum.photos/seed/gal5/400/300" alt="Project Image 5">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
       </div>
       <div class="gallery-item">
-        <img src="https://i.imgur.com/2u3v4w5x.jpg" alt="Project Image 6">
-        <div class="gallery-overlay">
-          <i class="fas fa-search-plus"></i>
-        </div>
+        <img src="https://picsum.photos/seed/gal6/400/300" alt="Project Image 6">
+        <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
       </div>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
-    &copy; 2025 Meridian<sup class="reg">®️</sup> Arch Studio. All rights reserved.
+    <p>&copy; 2025 Meridian<sup class="reg">®️</sup> Arch Studio. All rights reserved.</p>
   </footer>
+
+  <!-- Floating Social Icons -->
+  <div class="social-icons">
+    <a href="https://www.instagram.com/meridian_arch_studio" target="_blank" title="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://wa.me/7994000399" target="_blank" title="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://www.facebook.com/MeridianArchstudio" target="_blank" title="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+  </div>
 
   <!-- Back to Top Button -->
   <div class="back-to-top" id="backToTop">
@@ -1242,32 +671,38 @@ footer::before {
   </div>
 
   <script>
-    // Hide loader when page is loaded
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('loader').classList.add('hidden');
-      }, 500);
+    // Hide loader
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('loader').classList.add('hidden'), 500);
     });
 
-    // Back to top button
-    const backToTopButton = document.getElementById('backToTop');
-    
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        backToTopButton.classList.add('visible');
+    // Mobile Menu Logic
+    const menuToggle = document.getElementById('mobile-menu');
+    const navList = document.getElementById('nav-list');
+    const navLinks = document.querySelectorAll('#nav-list a');
+
+    menuToggle.addEventListener('click', () => {
+      navList.classList.toggle('active');
+      const icon = menuToggle.querySelector('i');
+      if (navList.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
       } else {
-        backToTopButton.classList.remove('visible');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
       }
     });
-    
-    backToTopButton.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navList.classList.remove('active');
+        const icon = menuToggle.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
       });
     });
 
-    // Video control variables
+    // Video Logic
     const heroVideo = document.getElementById('heroVideo');
     const playButton = document.getElementById('playButton');
     const heroContent = document.getElementById('heroContent');
@@ -1279,31 +714,29 @@ footer::before {
     let isMuted = true;
     let inactivityTimer;
 
-    // Reset inactivity timer
     function resetInactivityTimer() {
       clearTimeout(inactivityTimer);
       heroContent.classList.remove('fade-out');
       playButton.classList.remove('fade-out');
       videoControls.classList.remove('fade-out');
-      
       inactivityTimer = setTimeout(() => {
-        heroContent.classList.add('fade-out');
-        playButton.classList.add('fade-out');
-        videoControls.classList.add('fade-out');
-      }, 2000);
+        if(isPlaying) {
+          heroContent.classList.add('fade-out');
+          playButton.classList.add('fade-out');
+          videoControls.classList.add('fade-out');
+        }
+      }, 2500);
     }
 
-    // Add event listeners for inactivity
     document.addEventListener('click', resetInactivityTimer);
     document.addEventListener('mousemove', resetInactivityTimer);
     document.addEventListener('keydown', resetInactivityTimer);
-    document.addEventListener('touchstart', resetInactivityTimer);
 
-    // Video play/pause functionality
     playButton.addEventListener('click', () => {
       if (isPlaying) {
         heroVideo.pause();
         playButton.innerHTML = '<i class="fas fa-play"></i>';
+        playButton.classList.remove('fade-out');
       } else {
         heroVideo.play();
         heroVideo.muted = false;
@@ -1315,138 +748,29 @@ footer::before {
       isPlaying = !isPlaying;
     });
 
-    // Auto-play video on load with user interaction
-    heroVideo.addEventListener('loadedmetadata', () => {
-      // Wait for user interaction to play video
-    });
-
-    // Handle video end
-    heroVideo.addEventListener('ended', () => {
-      isPlaying = false;
-      playButton.innerHTML = '<i class="fas fa-play"></i>';
-    });
-
-    // Mute/unmute functionality
-    muteBtn.addEventListener('click', () => {
+    muteBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       isMuted = !isMuted;
       heroVideo.muted = isMuted;
-      
-      if (isMuted) {
-        muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-      } else {
-        muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-      }
+      muteBtn.innerHTML = isMuted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
       resetInactivityTimer();
     });
 
-    // Update duration
+    heroVideo.addEventListener('ended', () => {
+      isPlaying = false;
+      playButton.innerHTML = '<i class="fas fa-play"></i>';
+      playButton.classList.remove('fade-out');
+    });
+
     heroVideo.addEventListener('timeupdate', () => {
-      const currentMinutes = Math.floor(heroVideo.currentTime / 60);
-      const currentSeconds = Math.floor(heroVideo.currentTime % 60);
-      const durationMinutes = Math.floor(heroVideo.duration / 60) || 0;
-      const durationSeconds = Math.floor(heroVideo.duration % 60) || 0;
-      
-      durationEl.textContent = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds} / ${durationMinutes}:${durationSeconds < 10 ? '0' : ''}${durationSeconds}`;
+      const curM = Math.floor(heroVideo.currentTime / 60);
+      const curS = Math.floor(heroVideo.currentTime % 60);
+      const durM = Math.floor(heroVideo.duration / 60) || 0;
+      const durS = Math.floor(heroVideo.duration % 60) || 0;
+      durationEl.textContent = `${curM}:${curS < 10 ? '0' : ''}${curS} / ${durM}:${durS < 10 ? '0' : ''}${durS}`;
     });
 
-    // Video overlay play functionality for other videos
-    const videoItems = document.querySelectorAll('.video-item');
-    
-    videoItems.forEach(item => {
-      const video = item.querySelector('video');
-      const overlay = item.querySelector('.video-overlay');
-      const muteBtn = item.querySelector('.mute-btn');
-      const durationEl = item.querySelector('.duration');
-      let isPlaying = false;
-      let isMuted = true;
-      
-      overlay.addEventListener('click', () => {
-        if (isPlaying) {
-          video.pause();
-          overlay.style.opacity = '1';
-        } else {
-          video.play();
-          video.muted = false;
-          isMuted = false;
-          muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-          overlay.style.opacity = '0';
-        }
-        isPlaying = !isPlaying;
-      });
-      
-      video.addEventListener('play', () => {
-        overlay.style.opacity = '0';
-      });
-      
-      video.addEventListener('pause', () => {
-        overlay.style.opacity = '1';
-        isPlaying = false;
-      });
-      
-      video.addEventListener('ended', () => {
-        isPlaying = false;
-        overlay.style.opacity = '1';
-      });
-      
-      muteBtn.addEventListener('click', () => {
-        isMuted = !isMuted;
-        video.muted = isMuted;
-        
-        if (isMuted) {
-          muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-        } else {
-          muteBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
-        }
-      });
-      
-      video.addEventListener('timeupdate', () => {
-        const currentMinutes = Math.floor(video.currentTime / 60);
-        const currentSeconds = Math.floor(video.currentTime % 60);
-        const durationMinutes = Math.floor(video.duration / 60) || 0;
-        const durationSeconds = Math.floor(video.duration % 60) || 0;
-        
-        durationEl.textContent = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds} / ${durationMinutes}:${durationSeconds < 10 ? '0' : ''}${durationSeconds}`;
-      });
-    });
-
-    // Gallery image click to enlarge (simplified modal)
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    
-    galleryItems.forEach(item => {
-      const img = item.querySelector('img');
-      const overlay = item.querySelector('.gallery-overlay');
-      
-      overlay.addEventListener('click', () => {
-        // Create a simple modal for image viewing
-        const modal = document.createElement('div');
-        modal.style.position = 'fixed';
-        modal.style.top = '0';
-        modal.style.left = '0';
-        modal.style.width = '100%';
-        modal.style.height = '100%';
-        modal.style.background = 'rgba(0,0,0,0.9)';
-        modal.style.display = 'flex';
-        modal.style.justifyContent = 'center';
-        modal.style.alignItems = 'center';
-        modal.style.zIndex = '10000';
-        modal.style.cursor = 'pointer';
-        
-        const modalImg = document.createElement('img');
-        modalImg.src = img.src;
-        modalImg.style.maxWidth = '90%';
-        modalImg.style.maxHeight = '90vh';
-        modalImg.style.borderRadius = '10px';
-        
-        modal.appendChild(modalImg);
-        document.body.appendChild(modal);
-        
-        modal.addEventListener('click', () => {
-          document.body.removeChild(modal);
-        });
-      });
-    });
-
-    // Parallax effect for hero section
+    // Parallax
     window.addEventListener('scroll', () => {
       const scrollPosition = window.pageYOffset;
       const heroBg = document.querySelector('.hero-video-container');
@@ -1454,146 +778,13 @@ footer::before {
         heroBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
       }
     });
+
+    // Back to Top
+    const backToTopButton = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTopButton.classList.toggle('visible', window.pageYOffset > 300);
+    });
+    backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   </script>
 </body>
-</html>
-<!-- Add this HTML where you want the social icons to appear (usually before </body>) -->
-<div class="social-icons">
-  <a href="https://www.instagram.com/meridian_arch_studio" target="_blank" title="Instagram">
-    <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram">
-  </a>
-  <a href="https://wa.me/7994000399" target="_blank" title="WhatsApp">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-  </a>
-  <a href="https://www.facebook.com/Meridian Archstudio" target="_blank" title="Facebook">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
-  </a>
-</div>
-
-<!-- Add this CSS to your existing stylesheet -->
-<style>
-  /* Social Icons Styling */
-  .social-icons {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    z-index: 1000;
-  }
-
-  .social-icons a {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background: rgba(31, 31, 31, 0.8);
-    border-radius: 50%;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    text-decoration: none;
-  }
-
-  .social-icons a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, #ffcc00, #ff9900);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: -1;
-  }
-
-  .social-icons a:hover {
-    transform: translateY(-5px) scale(1.1);
-    background: rgba(31, 31, 31, 0.9);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  }
-
-  .social-icons a:hover::before {
-    opacity: 0.1;
-  }
-
-  .social-icons img {
-    width: 24px;
-    height: 24px;
-    filter: brightness(0) saturate(100%) invert(100%) hue-rotate(180deg);
-    transition: filter 0.3s ease;
-  }
-
-  .social-icons a:hover img {
-    filter: brightness(0) saturate(100%) invert(80%) hue-rotate(180deg);
-  }
-
-  /* Social icon animations */
-  .social-icons a:nth-child(1) {
-    animation: float 3s ease-in-out infinite;
-    animation-delay: 0s;
-  }
-
-  .social-icons a:nth-child(2) {
-    animation: float 3s ease-in-out infinite;
-    animation-delay: 0.2s;
-  }
-
-  .social-icons a:nth-child(3) {
-    animation: float 3s ease-in-out infinite;
-    animation-delay: 0.4s;
-  }
-
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-8px);
-    }
-  }
-
-  /* Mobile responsiveness for social icons */
-  @media (max-width: 768px) {
-    .social-icons {
-      bottom: 20px;
-      right: 20px;
-    }
-    
-    .social-icons a {
-      width: 45px;
-      height: 45px;
-    }
-    
-    .social-icons img {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .social-icons {
-      bottom: 15px;
-      right: 15px;
-    }
-    
-    .social-icons a {
-      width: 40px;
-      height: 40px;
-    }
-    
-    .social-icons img {
-      width: 18px;
-      height: 18px;
-    }
-  }
-</style>
-
-<!-- No JavaScript needed for this component -->
-
-
-
+</html>b
