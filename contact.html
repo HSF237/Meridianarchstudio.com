@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* --- RESET & GLOBAL --- */
     * { 
       margin: 0; 
       padding: 0; 
@@ -19,40 +20,28 @@
       background: #f4f4f4;
       color: #222;
       overflow-x: hidden;
+      padding-top: 80px; /* Space for fixed header */
     }
     
-    /* Scrollbar Styling */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #f1f1f1;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #888;
-      border-radius: 5px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #555;
-    }
+    /* --- SCROLLBAR --- */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #888; border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: #555; }
     
-    /* Animated Background */
+    /* --- ANIMATED BACKGROUND --- */
     .animated-bg {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: -1;
       opacity: 0.05;
     }
     .animated-bg::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: linear-gradient(45deg, #1f1f1f, #333, #1f1f1f);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
@@ -63,37 +52,30 @@
       100% { background-position: 0% 50%; }
     }
     
-    /* Header Styles */
+    /* --- HEADER & NAVIGATION --- */
     header {
-      background: rgba(31, 31, 31, 0.95);
+      background: rgba(31, 31, 31, 0.98);
       backdrop-filter: blur(10px);
       color: #fff;
       padding: 15px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      position: sticky;
+      position: fixed; /* Fixed header */
       top: 0;
-      z-index: 999;
+      width: 100%;
+      z-index: 1000;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       animation: slideDown 0.8s ease-out;
     }
+    
     @keyframes slideDown {
-      from {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
     
     header h1 {
       font-size: 20px;
-      flex: 1 0 100%;
-      margin-bottom: 10px;
       text-align: center;
       background: linear-gradient(90deg, #ffcc00, #ff9900);
       -webkit-background-clip: text;
@@ -102,20 +84,33 @@
       font-weight: 700;
       letter-spacing: 1px;
       animation: fadeIn 1s ease-out;
+      z-index: 1002; /* Above overlay */
     }
     
+    /* --- HAMBURGER MENU ICON --- */
+    .menu-toggle {
+      display: none; /* Hidden on desktop */
+      cursor: pointer;
+      font-size: 24px;
+      color: #fff;
+      z-index: 1002;
+      transition: color 0.3s;
+    }
+    
+    .menu-toggle:hover { color: #ffcc00; }
+    
+    /* --- NAV LINKS --- */
     nav {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
+      align-items: center;
     }
     
     nav a {
-      margin: 8px 10px;
       text-decoration: none;
       color: white;
-      font-size: 15px;
+      font-size: 16px;
+      font-weight: 500;
+      margin-left: 25px;
       transition: all 0.3s ease;
       position: relative;
       padding: 5px 0;
@@ -124,57 +119,27 @@
     nav a::after {
       content: '';
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
       background: #ffcc00;
       transition: width 0.3s ease;
     }
     
-    nav a:hover {
-      color: #ffcc00;
-      transform: translateY(-2px);
-    }
+    nav a:hover { color: #ffcc00; transform: translateY(-2px); }
+    nav a:hover::after { width: 100%; }
     
-    nav a:hover::after {
-      width: 100%;
-    }
-    
-    /* Media query for screens below 600px */
-    @media (min-width: 600px) {
-      header {
-        flex-wrap: nowrap;
-      }
-      header h1 {
-        font-size: 24px;
-        flex: none;
-        margin-bottom: 0;
-        text-align: left;
-      }
-      nav {
-        justify-content: flex-end;
-        width: auto;
-      }
-      nav a {
-        margin-left: 20px;
-        font-size: 16px;
-      }
-    }
-    
-    /* Banner Section */
+    /* --- BANNER SECTION --- */
     .banner {
       height: 50vh;
       position: relative;
       overflow: hidden;
+      margin-top: -80px; /* Pull banner up behind header */
     }
     
     .banner-bg {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
       z-index: -2;
       animation: zoomIn 20s infinite alternate;
@@ -195,8 +160,7 @@
     
     .banner-content {
       position: absolute;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
       color: white;
@@ -205,14 +169,8 @@
     }
     
     @keyframes fadeInUp {
-      from {
-        transform: translate(-50%, -30%);
-        opacity: 0;
-      }
-      to {
-        transform: translate(-50%, -50%);
-        opacity: 1;
-      }
+      from { transform: translate(-50%, -30%); opacity: 0; }
+      to { transform: translate(-50%, -50%); opacity: 1; }
     }
     
     .banner h2 {
@@ -224,15 +182,13 @@
     .banner h2::after {
       content: '';
       position: absolute;
-      bottom: -10px;
-      left: 50%;
+      bottom: -10px; left: 50%;
       transform: translateX(-50%);
-      width: 80px;
-      height: 3px;
+      width: 80px; height: 3px;
       background: #ffcc00;
     }
     
-    /* Section Styles */
+    /* --- MAIN CONTENT --- */
     section {
       padding: 60px 40px;
       max-width: 1000px;
@@ -240,6 +196,8 @@
       opacity: 0;
       transform: translateY(30px);
       transition: all 0.8s ease;
+      margin-bottom: 40px;
+      background: transparent;
     }
     
     section.visible {
@@ -259,17 +217,16 @@
     h2.section-title::after {
       content: '';
       position: absolute;
-      bottom: -10px;
-      left: 50%;
+      bottom: -10px; left: 50%;
       transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
+      width: 60px; height: 3px;
       background: #ffcc00;
     }
     
+    /* --- CONTACT GRID --- */
     .contact-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 40px;
     }
     
@@ -281,10 +238,7 @@
       transition: all 0.3s ease;
     }
     
-    .contact-info:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
+    .contact-info:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); }
     
     .contact-info h3 {
       margin-bottom: 20px;
@@ -297,10 +251,8 @@
     .contact-info h3::after {
       content: '';
       position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 40px;
-      height: 2px;
+      bottom: -5px; left: 0;
+      width: 40px; height: 2px;
       background: #ffcc00;
     }
     
@@ -312,10 +264,7 @@
       transition: all 0.3s ease;
     }
     
-    .contact-info p:hover {
-      transform: translateX(5px);
-      color: #1f1f1f;
-    }
+    .contact-info p:hover { transform: translateX(5px); color: #1f1f1f; }
     
     .contact-info i {
       color: #ffcc00;
@@ -325,6 +274,7 @@
       text-align: center;
     }
     
+    /* --- FORM STYLES --- */
     .contact-form {
       background: white;
       padding: 30px;
@@ -333,10 +283,7 @@
       transition: all 0.3s ease;
     }
     
-    .contact-form:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
+    .contact-form:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); }
     
     .contact-form label {
       display: block;
@@ -363,9 +310,9 @@
     }
     
     .contact-form button {
-      background: #1f1f1f;
+      background: #25D366; /* WhatsApp Green */
       color: white;
-      padding: 12px 25px;
+      padding: 14px 25px;
       border: none;
       border-radius: 6px;
       font-size: 16px;
@@ -374,37 +321,21 @@
       font-weight: 600;
       position: relative;
       overflow: hidden;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
-    .contact-form button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #ffcc00;
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-      z-index: 0;
-    }
+    .contact-form button i { margin-right: 10px; font-size: 20px; }
     
     .contact-form button:hover {
-      color: #1f1f1f;
+      background: #128C7E;
       transform: translateY(-3px);
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
     
-    .contact-form button:hover::before {
-      transform: translateX(0);
-    }
-    
-    .contact-form button span {
-      position: relative;
-      z-index: 1;
-    }
-    
-    /* Map Section */
+    /* --- MAP SECTION --- */
     .map-section {
       margin-top: 40px;
       border-radius: 12px;
@@ -415,8 +346,7 @@
     }
     
     .map-placeholder {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       background: url('https://images.unsplash.com/photo-1569336415962-4c0f8c8d8b4a') center/cover no-repeat;
       display: flex;
       justify-content: center;
@@ -426,10 +356,8 @@
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
     
-    /* FAQ Section */
-    .faq-section {
-      margin-top: 60px;
-    }
+    /* --- FAQ SECTION --- */
+    .faq-section { margin-top: 60px; }
     
     .faq-item {
       background: white;
@@ -440,9 +368,7 @@
       transition: all 0.3s ease;
     }
     
-    .faq-item:hover {
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
+    .faq-item:hover { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); }
     
     .faq-question {
       padding: 15px 20px;
@@ -454,14 +380,8 @@
       transition: all 0.3s ease;
     }
     
-    .faq-question:hover {
-      background: #f9f9f9;
-    }
-    
-    .faq-question i {
-      transition: transform 0.3s ease;
-      color: #ffcc00;
-    }
+    .faq-question:hover { background: #f9f9f9; }
+    .faq-question i { transition: transform 0.3s ease; color: #ffcc00; }
     
     .faq-answer {
       padding: 0 20px;
@@ -475,11 +395,9 @@
       max-height: 200px;
     }
     
-    .faq-item.active .faq-question i {
-      transform: rotate(180deg);
-    }
+    .faq-item.active .faq-question i { transform: rotate(180deg); }
     
-    /* Footer */
+    /* --- FOOTER --- */
     footer {
       background: #1f1f1f;
       color: white;
@@ -492,18 +410,15 @@
     footer::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
       background: linear-gradient(90deg, transparent, #ffcc00, transparent);
     }
     
-    /* Floating Social Icons */
+    /* --- FLOATING SOCIAL ICONS --- */
     .social-icons {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 20px; right: 20px;
       display: flex;
       flex-direction: column;
       gap: 15px;
@@ -514,14 +429,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 45px;
-      height: 45px;
+      width: 45px; height: 45px;
       background: rgba(31, 31, 31, 0.8);
       border-radius: 50%;
       color: white;
       font-size: 18px;
       transition: all 0.3s ease;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      text-decoration: none;
     }
     
     .social-icons a:hover {
@@ -530,13 +445,11 @@
       transform: translateY(-5px);
     }
     
-    /* Loading Animation */
+    /* --- LOADER --- */
     .loader {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: #1f1f1f;
       display: flex;
       justify-content: center;
@@ -545,54 +458,82 @@
       transition: opacity 0.5s ease, visibility 0.5s ease;
     }
     
-    .loader.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
     
     .loader-circle {
-      width: 50px;
-      height: 50px;
+      width: 50px; height: 50px;
       border: 5px solid rgba(255, 255, 255, 0.3);
       border-top-color: #ffcc00;
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
     
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    
+    /* --- RESPONSIVE MEDIA QUERIES --- */
+    
+    /* Desktop Styles (Default + Min Width 768px) */
+    @media (min-width: 768px) {
+      header h1 { font-size: 24px; }
+      .menu-toggle { display: none; } /* Ensure hamburger is hidden on desktop */
+      
+      nav {
+        display: flex; /* Show normal nav */
+        position: static;
+        background: transparent;
+        width: auto;
+        height: auto;
+        flex-direction: row;
+      }
     }
     
-    /* Animation for fade in */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
+    /* Mobile Styles */
+    @media (max-width: 767px) {
+      header { padding: 15px 15px; }
+      
+      .menu-toggle {
+        display: block; /* Show hamburger */
       }
       
-      .banner h2 {
-        font-size: 28px;
+      header h1 {
+        font-size: 18px;
+        margin: 0;
+        text-align: center;
+        width: 100%; /* Ensure center alignment works with flexbox */
       }
       
-      section {
-        padding: 40px 20px;
+      /* Mobile Nav Styles */
+      nav {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: #1f1f1f;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: 0.4s ease;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        z-index: 1001;
       }
       
-      .social-icons {
-        bottom: 10px;
-        right: 10px;
+      nav.active {
+        right: 0;
       }
       
-      .social-icons a {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
+      nav a {
+        margin: 20px 0;
+        font-size: 18px;
       }
+      
+      .banner h2 { font-size: 28px; }
+      section { padding: 40px 20px; }
+      
+      .social-icons { bottom: 10px; right: 10px; }
+      .social-icons a { width: 40px; height: 40px; font-size: 16px; }
+      
+      .contact-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -605,9 +546,17 @@
   <!-- Animated Background -->
   <div class="animated-bg"></div>
 
+  <!-- Header -->
   <header>
+    <!-- Hamburger Icon -->
+    <div class="menu-toggle" id="mobile-menu">
+      <i class="fas fa-bars"></i>
+    </div>
+
     <h1>Meridian Arch Studio</h1>
-    <nav>
+
+    <!-- Navigation -->
+    <nav id="nav-list">
       <a href="index.html">Home</a>
       <a href="projects.html">Projects</a>
       <a href="about.html">About Us</a>
@@ -633,6 +582,7 @@
         <p><i class="fas fa-envelope"></i> meridianbuilderspayyannur@gmail.com</p>
         <p><i class="fas fa-clock"></i> Mon - Sat: 9:00am - 6:00pm</p>
       </div>
+      
       <div class="contact-form">
         <form id="contactForm">
           <label for="name">Name</label>
@@ -641,13 +591,16 @@
           <label for="email">Email</label>
           <input type="email" id="email" placeholder="your@email.com" required />
           
+          <label for="phone">Phone Number (WhatsApp)</label>
+          <input type="tel" id="phone" placeholder="+91 98765 43210" required />
+          
           <label for="subject">Subject</label>
           <input type="text" id="subject" placeholder="How can we help you?" required />
           
           <label for="message">Message</label>
           <textarea id="message" rows="5" placeholder="Your message..." required></textarea>
           
-          <button type="submit"><span>Send Message</span></button>
+          <button type="submit"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button>
         </form> 
       </div>
     </div>
@@ -706,14 +659,41 @@
   </div>
 
   <script>
-    // Hide loader when page is loaded
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        document.getElementById('loader').classList.add('hidden');
-      }, 500);
+    // Hide loader
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('loader').classList.add('hidden'), 500);
     });
 
-    // Scroll animations
+    // Mobile Menu Toggle Logic
+    const menuToggle = document.getElementById('mobile-menu');
+    const navList = document.getElementById('nav-list');
+    const navLinks = document.querySelectorAll('#nav-list a');
+
+    menuToggle.addEventListener('click', () => {
+      navList.classList.toggle('active');
+      
+      // Change icon from bars to times (X)
+      const icon = menuToggle.querySelector('i');
+      if (navList.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    // Close menu when a link is clicked
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navList.classList.remove('active');
+        const icon = menuToggle.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      });
+    });
+
+    // Scroll Animations
     const sections = document.querySelectorAll('section');
     
     function checkScroll() {
@@ -728,43 +708,41 @@
     }
     
     window.addEventListener('scroll', checkScroll);
-    checkScroll(); // Check on load
+    checkScroll();
 
-    // FAQ functionality
+    // FAQ Toggle
     const faqItems = document.querySelectorAll('.faq-item');
-    
     faqItems.forEach(item => {
       const question = item.querySelector('.faq-question');
-      
       question.addEventListener('click', () => {
-        // Close all other items
         faqItems.forEach(otherItem => {
           if (otherItem !== item && otherItem.classList.contains('active')) {
             otherItem.classList.remove('active');
           }
         });
-        
-        // Toggle current item
         item.classList.toggle('active');
       });
     });
 
-    // Form submission
+    // WhatsApp Form Submission
     const contactForm = document.getElementById('contactForm');
-    
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
-      // Get form values
       const name = document.getElementById('name').value;
       const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
       const subject = document.getElementById('subject').value;
       const message = document.getElementById('message').value;
+
+      const destinationNumber = "919895876084"; 
+      const whatsappMessage = `*New Inquiry from Website*\n\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*Subject:* ${subject}\n\n*Message:*\n${message}`;
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      const whatsappUrl = `https://wa.me/${destinationNumber}?text=${encodedMessage}`;
       
-      // Here you would normally send the form data to a server
-      // For demo purposes, we'll just show a success message
+      window.open(whatsappUrl, '_blank');
       
-      // Create success message
+      // Success Feedback
       const successMessage = document.createElement('div');
       successMessage.style.position = 'fixed';
       successMessage.style.top = '50%';
@@ -778,31 +756,28 @@
       successMessage.style.zIndex = '10000';
       successMessage.style.textAlign = 'center';
       successMessage.innerHTML = `
-        <h3 style="margin-bottom: 10px; color: #ffcc00;">Thank You, ${name}!</h3>
-        <p>Your message has been sent successfully. We'll get back to you soon.</p>
+        <h3 style="margin-bottom: 10px; color: #ffcc00;">Redirecting to WhatsApp...</h3>
+        <p>If you are not redirected, <a href="${whatsappUrl}" target="_blank" style="color:#ffcc00;">click here</a>.</p>
       `;
       
       document.body.appendChild(successMessage);
       
-      // Reset form
-      contactForm.reset();
-      
-      // Remove success message after 3 seconds
       setTimeout(() => {
         successMessage.style.opacity = '0';
         successMessage.style.transition = 'opacity 0.5s ease';
-        
         setTimeout(() => {
-          document.body.removeChild(successMessage);
+          if (document.body.contains(successMessage)) document.body.removeChild(successMessage);
         }, 500);
       }, 3000);
+      
+      contactForm.reset();
     });
 
-    // Parallax effect for banner
+    // Banner Parallax
     window.addEventListener('scroll', () => {
       const scrollPosition = window.pageYOffset;
       const bannerBg = document.querySelector('.banner-bg');
-      if (bannerBg) {
+      if (bannerBg && window.innerWidth > 768) {
         bannerBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
       }
     });
