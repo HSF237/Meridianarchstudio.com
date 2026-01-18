@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home - Meridian Arch Studio</title>
+  <link rel="icon" type="image/png" href="logo.jpg">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+      background: url('https://static.vecteezy.com/system/resources/previews/021/615/811/large_2x/abstract-modern-architecture-background-empty-open-space-interior-architectural-space-with-line-structure-3d-rendering-free-photo.jpg') center/cover no-repeat;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    /* Animated Background */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.4;
+    }
+    .animated-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, #1f1f1f, #333, #1f1f1f);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    /* Header Styles */
+    header {
+      background: rgba(31, 31, 31, 0.95);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      animation: slideDown 0.8s ease-out;
+    }
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    header h1 {
+      font-size: 20px;
+      flex: 1 0 100%;
+      margin-bottom: 10px;
+      text-align: center;
+      background: linear-gradient(90deg, #ffcc00, #ff9900);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+      letter-spacing: 1px;
+      animation: fadeIn 1s ease-out;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+    nav a {
+      margin: 8px 10px;
+      text-decoration: none;
+      color: white;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      position: relative;
+      padding: 5px 0;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #ffcc00;
+      transition: width 0.3s ease;
+    }
+    nav a:hover {
+      color: #ffcc00;
+      transform: translateY(-2px);
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    /* Media query for screens below 600px */
+    @media (min-width: 600px) {
+      header {
+        flex-wrap: nowrap;
+      }
+      header h1 {
+        font-size: 24px;
+        flex: none;
+        margin-bottom: 0;
+        text-align: left;
+      }
+      nav {
+        justify-content: flex-end;
+        width: auto;
+      }
+      nav a {
+        margin-left: 20px;
+        font-size: 16px;
+      }
+    }
+    /* Hero Section */
+    .hero {
+      height: 90vh;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
+      z-index: -2;
+      animation: zoomIn 20s infinite alternate;
+    }
+    @keyframes zoomIn {
+      from { transform: scale(1); }
+      to { transform: scale(1.1); }
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1.5s ease-out;
+    }
+    @keyframes fadeInUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    .hero h2 {
+      font-size: 48px;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.2;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    .hero p {
+      font-size: 18px;
+      margin-top: 20px;
+      opacity: 0.9;
+    }
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-20px); }
+      60% { transform: translateX(-50%) translateY(-10px); }
+    }
+    .scroll-indicator i {
+      color: white;
+      font-size: 24px;
+    }
+    /* Section Styles */
+    section {
+      padding: 60px 40px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .intro, .services, .projects-preview, .testimonials, .cta, .contact-preview {
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+    section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+    section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: #ffcc00;
+    }
+    .intro p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-top: 20px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .service-box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #1f1f1f, #ffcc00);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    .service-box:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    }
+    .service-box:hover::before {
+      transform: translateX(0);
+    }
+    .service-icon {
+      font-size: 36px;
+      color: #1f1f1f;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+    }
+    .service-box:hover .service-icon {
+      color: #ffcc00;
+      transform: scale(1.1);
+    }
+    .service-box h3 {
+      margin-top: 15px;
+      font-size: 20px;
+    }
+    .service-box p {
+      font-size: 15px;
+      margin-top: 10px;
+      color: #666;
+    }
+    /* Projects Preview */
+    .projects-preview {
+      position: relative;
+    }
+    .projects-preview img {
+      width: 100%;
+      max-width: 800px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      transition: all 0.5s ease;
+    }
+    .projects-preview img:hover {
+      transform: scale(1.02);
+    }
+    .view-projects-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: linear-gradient(90deg, #1f1f1f, #333);
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .view-projects-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffcc00;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: -1;
+    }
+    .view-projects-btn:hover {
+      color: #1f1f1f;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+    }
+    .view-projects-btn:hover::before {
+      transform: translateX(0);
+    }
+    /* Testimonials */
+    .testimonials {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .testimonials blockquote {
+      font-style: italic;
+      margin: 30px auto;
+      max-width: 700px;
+      font-size: 18px;
+      line-height: 1.6;
+      position: relative;
+    }
+    .testimonials blockquote::before {
+      content: '"';
+      font-size: 60px;
+      color: #ffcc00;
+      position: absolute;
+      top: -20px;
+      left: -30px;
+      opacity: 0.3;
+    }
+    .testimonials cite {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #1f1f1f;
+    }
+    /* CTA Section */
+    .cta {
+      background: linear-gradient(135deg, #1f1f1f, #333);
+      color: white;
+      padding: 60px 40px;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://static.vecteezy.com/system/resources/previews/021/615/811/large_2x/abstract-modern-architecture-background-empty-open-space-interior-architectural-space-with-line-structure-3d-rendering-free-photo.jpg') center/cover no-repeat;
+      opacity: 0.1;
+      z-index: 0;
+    }
+    .cta-content {
+      position: relative;
+      z-index: 1;
+    }
+    .cta h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+    .cta a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 30px;
+      background-color: #ffcc00;
+      color: #000;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+    }
+    .cta a:hover {
+      background-color: #e6b800;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4);
+    }
+    /* Footer */
+    footer {
+      background-color: #1f1f1f;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #ffcc00, transparent);
+    }
+    /* Floating Social Icons */
+    .social-icons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      background: rgba(31, 31, 31, 0.8);
+      border-radius: 50%;
+      color: white;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    .social-icons a:hover {
+      background: #ffcc00;
+      color: #1f1f1f;
+      transform: translateY(-5px);
+    }
+    /* Loading Animation */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #1f1f1f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loader-circle {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #ffcc00;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    /* Animation for fade in */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 32px;
+      }
+      section {
+        padding: 40px 20px;
+      }
+      .social-icons {
+        bottom: 10px;
+        right: 10px;
+      }
+      .social-icons a {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Animation -->
+  <div class="loader" id="loader">
+    <div class="loader-circle"></div>
+  </div>
+
+  <!-- Animated Background -->
+  <div class="animated-bg"></div>
+
+  <header>
+    <h1>Meridian Arch Studio</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About Us</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h2>Designing Dreams. Building the Future.</h2>
+      <p>Creating architectural masterpieces that blend tradition with innovation</p>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </div>
+
+  <section class="intro">
+    <h2>Welcome to Meridian Arch Studio</h2>
+    <p>We are a Kerala-based architectural firm blending traditional aesthetics with modern functionality. Our designs respect nature, culture, and innovation—crafted with care for every client.</p>
+  </section>
+
+  <section class="services">
+    <h2>Our Services</h2>
+    <div class="services-grid">
+      <div class="service-box">
+        <div class="service-icon">
+          <i class="fas fa-home"></i>
+        </div>
+        <h3>Residential Design</h3>
+        <p>Personalized home designs rooted in climate-sensitive and Vastu-compliant architecture.</p>
+      </div>
+      <div class="service-box">
+        <div class="service-icon">
+          <i class="fas fa-building"></i>
+        </div>
+        <h3>Commercial Spaces</h3>
+        <p>Smart, sustainable, and stylish commercial layouts for modern business needs.</p>
+      </div>
+      <div class="service-box">
+        <div class="service-icon">
+          <i class="fas fa-cube"></i>
+        </div>
+        <h3>3D Visualization</h3>
+        <p>Realistic renders and walkthroughs to bring your concepts to life before construction.</p>
+      </div>
+      <div class="service-box">
+        <div class="service-icon">
+          <i class="fas fa-tools"></i>
+        </div>
+        <h3>Renovations</h3>
+        <p>Revamping traditional structures while preserving their soul and identity.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects-preview">
+    <h2>Featured Projects</h2>
+    <p>Explore our latest architectural masterpieces.</p>
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Preview Project">
+    <a href="projects.html" class="view-projects-btn">View All Projects</a>
+  </section>
+
+  <section class="testimonials">
+    <h2>What Our Clients Say</h2>
+    <blockquote>
+      "Meridian Arch Studio transformed our vision into reality. Every detail was perfect, and their team was wonderful to work with."
+      <cite>– Ayesha Rahman, Calicut</cite>
+    </blockquote>
+  </section>
+
+  <section class="cta">
+    <div class="cta-content">
+      <h2>Ready to Build Your Dream?</h2>
+      <a href="contact.html">Get in Touch</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Meridian Arch Studio. All rights reserved.</p>
+  </footer>
+
+  <!-- Floating Social Icons -->
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+
+  <script>
+    // Hide loader when page is loaded
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loader').classList.add('hidden');
+      }, 500);
+    });
+
+    // Scroll animations
+    const sections = document.querySelectorAll('section');
+    
+    function checkScroll() {
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        
+        if (sectionTop < windowHeight * 0.75) {
+          section.classList.add('visible');
+        }
+      });
+    }
+    
+    window.addEventListener('scroll', checkScroll);
+    checkScroll(); // Check on load
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Parallax effect for hero section
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.pageYOffset;
+      const heroBg = document.querySelector('.hero-bg');
+      if (heroBg) {
+        heroBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+      }
+    });
+  </script>
+</body>
+</html>
+

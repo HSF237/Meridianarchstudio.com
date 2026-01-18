@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Our Services - Meridian Arch Studio</title>
+    <link rel="icon" type="image/png" href="logo.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.05;
+        }
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1f1f1f, #333, #1f1f1f);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Header Styles */
+        header {
+            background: rgba(31, 31, 31, 0.95);
+            backdrop-filter: blur(10px);
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            animation: slideDown 0.8s ease-out;
+        }
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        header h1 {
+            font-size: 24px;
+            background: linear-gradient(90deg, #4a6bdf, #7c4dff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            letter-spacing: 1px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        nav {
+            display: flex;
+        }
+        
+        nav a {
+            margin-left: 20px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #7c4dff;
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: #7c4dff;
+            transform: translateY(-2px);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 50vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') center/cover no-repeat;
+            z-index: -2;
+            animation: zoomIn 20s infinite alternate;
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 1;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                transform: translate(-50%, -30%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+        }
+        
+        .hero h2 {
+            font-size: 40px;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 10px rgba(124, 77, 255, 0.7);
+        }
+        
+        .hero h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #7c4dff;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-top: 20px;
+            text-shadow: 0 0 8px rgba(124, 77, 255, 0.5);
+        }
+        
+        /* Container */
+        .container {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        
+        section {
+            margin: 40px 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+            color: #1f1f1f;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #7c4dff;
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-box {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 1px solid rgba(124, 77, 255, 0.1);
+        }
+        
+        .service-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #4a6bdf, #7c4dff);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        
+        .service-box:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(124, 77, 255, 0.2);
+        }
+        
+        .service-box:hover::before {
+            transform: translateX(0);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: #f9f9f9;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(124, 77, 255, 0.2);
+        }
+        
+        .service-icon img {
+            width: 40px;
+            height: 40px;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 3px rgba(124, 77, 255, 0.3));
+        }
+        
+        .service-box:hover .service-icon {
+            background: rgba(124, 77, 255, 0.1);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(124, 77, 255, 0.3);
+        }
+        
+        .service-box h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #1f1f1f;
+            transition: color 0.3s ease;
+        }
+        
+        .service-box:hover h3 {
+            color: #7c4dff;
+            text-shadow: 0 0 8px rgba(124, 77, 255, 0.3);
+        }
+        
+        .service-box p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+        
+        .service-box:hover p {
+            color: #333;
+        }
+        
+        .service-features {
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.3s ease;
+        }
+        
+        .service-box:hover .feature-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .service-box:hover .feature-item:nth-child(1) { transition-delay: 0.1s; }
+        .service-box:hover .feature-item:nth-child(2) { transition-delay: 0.2s; }
+        .service-box:hover .feature-item:nth-child(3) { transition-delay: 0.3s; }
+        
+        .feature-icon {
+            color: #7c4dff;
+            margin-right: 10px;
+            font-size: 14px;
+            filter: drop-shadow(0 0 3px rgba(124, 77, 255, 0.5));
+        }
+        
+        .feature-text {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        /* Process Section */
+        .process-section {
+            margin-top: 80px;
+            background: white;
+            padding: 50px 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(124, 77, 255, 0.1);
+        }
+        
+        .process-timeline {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            position: relative;
+            flex-wrap: wrap;
+        }
+        
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #4a6bdf, #7c4dff);
+            z-index: 1;
+        }
+        
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 0 10px;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4a6bdf, #7c4dff);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 0 15px rgba(124, 77, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .process-step:hover .step-number {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(124, 77, 255, 0.6);
+        }
+        
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1f1f1f;
+        }
+        
+        .step-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        /* Testimonials Section */
+        .testimonials-section {
+            margin-top: 80px;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(124, 77, 255, 0.1);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(124, 77, 255, 0.15);
+        }
+        
+        .quote-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 40px;
+            color: #7c4dff;
+            opacity: 0.3;
+            filter: drop-shadow(0 0 5px rgba(124, 77, 255, 0.5));
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4a6bdf, #7c4dff);
+            margin-right: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            box-shadow: 0 0 10px rgba(124, 77, 255, 0.3);
+        }
+        
+        .client-details h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #1f1f1f;
+        }
+        
+        .client-details p {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            margin-top: 80px;
+            background: linear-gradient(135deg, #1f1f1f, #333);
+            border-radius: 15px;
+            padding: 60px 40px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://static.vecteezy.com/system/resources/previews/021/615/811/large_2x/abstract-modern-architecture-background-empty-open-space-interior-architectural-space-with-line-structure-3d-rendering-free-photo.jpg') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 0 10px rgba(124, 77, 255, 0.5);
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(90deg, #4a6bdf, #7c4dff);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(124, 77, 255, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(124, 77, 255, 0.6);
+        }
+        
+        /* Footer */
+        footer {
+            background: #1f1f1f;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+            position: relative;
+            margin-top: 80px;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #7c4dff, transparent);
+        }
+        
+        footer p {
+            margin: 5px 0;
+        }
+        
+        /* Floating Social Icons */
+        .social-icons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(31, 31, 31, 0.8);
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-icons a:hover {
+            background: #7c4dff;
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px rgba(124, 77, 255, 0.5);
+        }
+        
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1f1f1f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader-circle {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #7c4dff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 15px rgba(124, 77, 255, 0.5);
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Animation for fade in */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 20px;
+            }
+            .hero h2 {
+                font-size: 28px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+            section h2 {
+                font-size: 24px;
+            }
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            .process-timeline::before {
+                display: none;
+            }
+            .process-timeline {
+                flex-direction: column;
+            }
+            .process-step {
+                margin-bottom: 30px;
+            }
+            .social-icons {
+                bottom: 10px;
+                right: 10px;
+            }
+            .social-icons a {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Animation -->
+    <div class="loader" id="loader">
+        <div class="loader-circle"></div>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+
+    <header>
+        <h1>Meridian Arch Studio</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Services</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h2>Our Services</h2>
+            <p>Transforming visions into architectural excellence</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section>
+            <h2>What We Offer</h2>
+            <div class="services-grid">
+                <div class="service-box">
+                    <div class="service-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2582/2582214.png" alt="Architectural Design">
+                    </div>
+                    <h3>Creative Design</h3>
+                    <p>Crafting innovative designs that reflect your unique style and personality.</p>
+                    <div class="service-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Customized solutions</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Innovative concepts</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Aesthetic excellence</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-box">
+                    <div class="service-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1856/1856987.png" alt="Interior Design">
+                    </div>
+                    <h3>Interior Styling</h3>
+                    <p>Transforming interiors into harmonious and functional spaces.</p>
+                    <div class="service-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Space optimization</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Material selection</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Lighting design</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-box">
+                    <div class="service-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2161/2161882.png" alt="3D Visualizations">
+                    </div>
+                    <h3>3D Renderings</h3>
+                    <p>Bringing your ideas to life with stunning visuals and walkthroughs.</p>
+                    <div class="service-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Photorealistic renders</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Virtual walkthroughs</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Interactive presentations</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-box">
+                    <div class="service-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2329/2329123.png" alt="Project Management">
+                    </div>
+                    <h3>Project Management</h3>
+                    <p>Efficient management and planning for seamless project execution.</p>
+                    <div class="service-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Budget planning</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Timeline management</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Quality control</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-box">
+                    <div class="service-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2329/2329123.png" alt="Site Planning">
+                    </div>
+                    <h3>Site Planning</h3>
+                    <p>Smart planning for optimum space utilization, zoning regulations, and functional layout designs.</p>
+                    <div class="service-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Land use analysis</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Zoning compliance</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Environmental considerations</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="service-box">
+                    <div class="service-icon">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="Renovation">
+                    </div>
+                    <h3>Renovation</h3>
+                    <p>Breathing new life into existing structures with thoughtful redesign and restoration.</p>
+                    <div class="service-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Structural assessment</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Historical preservation</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon"></i>
+                            <span class="feature-text">Modern integration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="process-section">
+            <h2>Our Process</h2>
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Consultation</h3>
+                    <p class="step-description">Understanding your vision, requirements, and budget constraints.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Concept Design</h3>
+                    <p class="step-description">Creating initial design concepts based on your needs and preferences.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Development</h3>
+                    <p class="step-description">Refining the design with detailed drawings and material specifications.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Implementation</h3>
+                    <p class="step-description">Overseeing the construction process to ensure quality and adherence to design.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="testimonials-section">
+            <h2>Client Testimonials</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text">"The team at Meridian Arch Studio transformed our vision into reality. Their attention to detail and creative solutions exceeded our expectations."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">AK</div>
+                        <div class="client-details">
+                            <h4>Arun Kumar</h4>
+                            <p>Residential Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text">"Working with Meridian Arch Studio was a seamless experience. They delivered our commercial project on time and within budget."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">SP</div>
+                        <div class="client-details">
+                            <h4>Suresh Pillai</h4>
+                            <p>Commercial Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <i class="fas fa-quote-right quote-icon"></i>
+                    <p class="testimonial-text">"The 3D visualizations helped us understand the design perfectly before construction began. Highly recommend their services!"</p>
+                    <div class="client-info">
+                        <div class="client-avatar">MR</div>
+                        <div class="client-details">
+                            <h4>Meera Rajan</h4>
+                            <p>Villa Project</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Ready to Begin Your Project?</h2>
+                <p>Let's collaborate to create spaces that inspire and endure. Contact us today for a consultation.</p>
+                <a href="contact.html" class="cta-button">Get Started</a>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>© 2025 Meridian Arch Studio. All rights reserved.</p>
+    </footer>
+
+    <!-- Floating Social Icons -->
+    <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+
+    <script>
+        // Hide loader when page is loaded
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loader').classList.add('hidden');
+            }, 500);
+        });
+
+        // Scroll animations
+        const sections = document.querySelectorAll('section');
+        
+        function checkScroll() {
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.75) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkScroll);
+        checkScroll(); // Check on load
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.pageYOffset;
+            const heroBg = document.querySelector('.hero-bg');
+            if (heroBg) {
+                heroBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
+
