@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About Us - Meridian Arch Studio</title>
   <link rel="website icon" type="png" href="logo.jpg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <style>
-    * { 
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box; 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
     body {
       font-family: 'Montserrat', sans-serif;
       background: #fdfdfd;
@@ -21,22 +33,82 @@
       scroll-behavior: smooth;
       overflow-x: hidden;
     }
-    
+
     /* Scrollbar Styling */
     ::-webkit-scrollbar {
       width: 10px;
     }
+
     ::-webkit-scrollbar-track {
       background: #f1f1f1;
     }
+
     ::-webkit-scrollbar-thumb {
       background: #888;
       border-radius: 5px;
     }
+
     ::-webkit-scrollbar-thumb:hover {
       background: #555;
     }
-    
+
+    /* Cursor Follower (desktop only) */
+    @media (hover: hover) and (pointer: fine) {
+      .cursor-follower {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 2000;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle at 30% 30%, rgba(255, 204, 0, 0.9), rgba(255, 204, 0, 0.1));
+        box-shadow: 0 10px 30px rgba(255, 204, 0, 0.25);
+        mix-blend-mode: screen;
+        opacity: 0;
+        transition: opacity 0.2s ease, transform 0.15s ease;
+        will-change: transform, opacity;
+      }
+
+      .cursor-follower.active {
+        opacity: 1;
+      }
+
+      .cursor-follower.expand {
+        transform: translate(-50%, -50%) scale(1.5);
+      }
+
+      .cursor-bubble {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1999;
+        background: radial-gradient(circle at 30% 30%, rgba(255, 204, 0, 0.7), rgba(255, 204, 0, 0));
+        box-shadow: 0 8px 20px rgba(255, 204, 0, 0.25);
+        transform: translate(-50%, -50%);
+        opacity: 0.9;
+        animation: bubbleFloat 1.2s ease-out forwards;
+        will-change: transform, opacity;
+        mix-blend-mode: screen;
+      }
+
+      @keyframes bubbleFloat {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0.9;
+        }
+
+        100% {
+          transform: translate(-50%, -70%) scale(2.2);
+          opacity: 0;
+        }
+      }
+    }
+
     /* Animated Background */
     .animated-bg {
       position: fixed;
@@ -47,6 +119,7 @@
       z-index: -1;
       opacity: 0.05;
     }
+
     .animated-bg::before {
       content: '';
       position: absolute;
@@ -58,12 +131,21 @@
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
     }
+
     @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
     }
-    
+
     /* Header Styles */
     header {
       background: rgba(31, 31, 31, 0.95);
@@ -80,17 +162,19 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       animation: slideDown 0.8s ease-out;
     }
+
     @keyframes slideDown {
       from {
         transform: translateY(-100%);
         opacity: 0;
       }
+
       to {
         transform: translateY(0);
         opacity: 1;
       }
     }
-    
+
     header h1 {
       font-size: 20px;
       flex: 1 0 100%;
@@ -104,14 +188,14 @@
       letter-spacing: 1px;
       animation: fadeIn 1s ease-out;
     }
-    
+
     nav {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       width: 100%;
     }
-    
+
     nav a {
       margin: 8px 10px;
       text-decoration: none;
@@ -121,7 +205,7 @@
       position: relative;
       padding: 5px 0;
     }
-    
+
     nav a::after {
       content: '';
       position: absolute;
@@ -132,44 +216,47 @@
       background: #ffcc00;
       transition: width 0.3s ease;
     }
-    
+
     nav a:hover {
       color: #ffcc00;
       transform: translateY(-2px);
     }
-    
+
     nav a:hover::after {
       width: 100%;
     }
-    
+
     /* Media query for screens below 600px */
     @media (min-width: 600px) {
       header {
         flex-wrap: nowrap;
       }
+
       header h1 {
         font-size: 24px;
         flex: none;
         margin-bottom: 0;
         text-align: left;
       }
+
       nav {
         justify-content: flex-end;
         width: auto;
       }
+
       nav a {
         margin-left: 20px;
         font-size: 16px;
       }
     }
-    
+
     /* Banner Section */
     .banner {
       height: 50vh;
       position: relative;
       overflow: hidden;
     }
-    
+
     .banner-bg {
       position: absolute;
       top: 0;
@@ -180,20 +267,25 @@
       z-index: -2;
       animation: zoomIn 20s infinite alternate;
     }
-    
+
     @keyframes zoomIn {
-      from { transform: scale(1); }
-      to { transform: scale(1.1); }
+      from {
+        transform: scale(1);
+      }
+
+      to {
+        transform: scale(1.1);
+      }
     }
-    
+
     .banner::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0, 0, 0, 0.6);
       z-index: -1;
     }
-    
+
     .banner-content {
       position: absolute;
       top: 50%;
@@ -204,24 +296,25 @@
       z-index: 1;
       animation: fadeInUp 1.5s ease-out;
     }
-    
+
     @keyframes fadeInUp {
       from {
         transform: translate(-50%, -30%);
         opacity: 0;
       }
+
       to {
         transform: translate(-50%, -50%);
         opacity: 1;
       }
     }
-    
+
     .banner h2 {
       font-size: 36px;
       position: relative;
       display: inline-block;
     }
-    
+
     .banner h2::after {
       content: '';
       position: absolute;
@@ -232,7 +325,7 @@
       height: 3px;
       background: #ffcc00;
     }
-    
+
     /* Section Styles */
     section {
       padding: 60px 40px;
@@ -242,12 +335,12 @@
       transform: translateY(30px);
       transition: all 0.8s ease;
     }
-    
+
     section.visible {
       opacity: 1;
       transform: translateY(0);
     }
-    
+
     section h2 {
       text-align: center;
       margin-bottom: 30px;
@@ -256,7 +349,7 @@
       display: inline-block;
       width: 100%;
     }
-    
+
     section h2::after {
       content: '';
       position: absolute;
@@ -267,7 +360,7 @@
       height: 3px;
       background: #ffcc00;
     }
-    
+
     .about-text {
       font-size: 17px;
       line-height: 1.8;
@@ -276,69 +369,69 @@
       max-width: 800px;
       margin: 0 auto;
     }
-    
+
     .about-image {
       margin-top: 40px;
       text-align: center;
       position: relative;
     }
-    
+
     .about-image img {
       width: 80%;
       max-width: 600px;
       border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
       transition: all 0.5s ease;
     }
-    
+
     .about-image img:hover {
       transform: scale(1.02);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     }
-    
+
     /* Team Section */
     .team-section {
       margin-top: 80px;
     }
-    
+
     .team-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
       margin-top: 40px;
     }
-    
+
     .team-member {
       background: white;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
       text-align: center;
     }
-    
+
     .team-member:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     }
-    
+
     .member-image {
       height: 250px;
       overflow: hidden;
       position: relative;
     }
-    
+
     .member-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: all 0.5s ease;
     }
-    
+
     .team-member:hover .member-image img {
       transform: scale(1.1);
     }
-    
+
     .member-overlay {
       position: absolute;
       top: 0;
@@ -352,16 +445,16 @@
       opacity: 0;
       transition: all 0.3s ease;
     }
-    
+
     .team-member:hover .member-overlay {
       opacity: 1;
     }
-    
+
     .social-links {
       display: flex;
       gap: 15px;
     }
-    
+
     .social-links a {
       display: flex;
       justify-content: center;
@@ -373,76 +466,76 @@
       border-radius: 50%;
       transition: all 0.3s ease;
     }
-    
+
     .social-links a:hover {
       background: #1f1f1f;
       color: #ffcc00;
       transform: scale(1.1);
     }
-    
+
     .member-info {
       padding: 20px;
     }
-    
+
     .member-info h3 {
       font-size: 20px;
       margin-bottom: 5px;
     }
-    
+
     .member-info p {
       color: #666;
       font-size: 14px;
     }
-    
+
     /* Values Section */
     .values-section {
       margin-top: 80px;
     }
-    
+
     .values-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 30px;
       margin-top: 40px;
     }
-    
+
     .value-box {
       text-align: center;
       padding: 30px 20px;
       background: white;
       border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
     }
-    
+
     .value-box:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     }
-    
+
     .value-icon {
       font-size: 40px;
       color: #ffcc00;
       margin-bottom: 15px;
     }
-    
+
     .value-box h3 {
       font-size: 18px;
       margin-bottom: 10px;
     }
-    
+
     .value-box p {
       color: #666;
       font-size: 14px;
       line-height: 1.5;
     }
-    
+
     /* Timeline Section */
     .timeline-section {
       margin-top: 80px;
       position: relative;
     }
-    
+
     .timeline-section::before {
       content: '';
       position: absolute;
@@ -453,25 +546,25 @@
       height: 100%;
       background: #ffcc00;
     }
-    
+
     .timeline-item {
       position: relative;
       margin-bottom: 50px;
     }
-    
+
     .timeline-content {
       background: white;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       width: 45%;
       position: relative;
     }
-    
+
     .timeline-item:nth-child(odd) .timeline-content {
       margin-left: auto;
     }
-    
+
     .timeline-date {
       position: absolute;
       top: 0;
@@ -486,15 +579,15 @@
       font-weight: 600;
       font-size: 14px;
     }
-    
+
     .timeline-item:nth-child(odd) .timeline-date {
       left: -110px;
     }
-    
+
     .timeline-item:nth-child(even) .timeline-date {
       right: -110px;
     }
-    
+
     .timeline-dot {
       position: absolute;
       top: 15px;
@@ -505,15 +598,15 @@
       border-radius: 50%;
       z-index: 1;
     }
-    
+
     .timeline-item:nth-child(odd) .timeline-dot {
       left: calc(50% - 10px);
     }
-    
+
     .timeline-item:nth-child(even) .timeline-dot {
       left: calc(50% - 10px);
     }
-    
+
     /* Footer */
     footer {
       background: #1f1f1f;
@@ -523,7 +616,7 @@
       position: relative;
       margin-top: 80px;
     }
-    
+
     footer::before {
       content: '';
       position: absolute;
@@ -533,7 +626,7 @@
       height: 3px;
       background: linear-gradient(90deg, transparent, #ffcc00, transparent);
     }
-    
+
     /* Floating Social Icons */
     .social-icons {
       position: fixed;
@@ -544,7 +637,7 @@
       gap: 15px;
       z-index: 1000;
     }
-    
+
     .social-icons a {
       display: flex;
       align-items: center;
@@ -558,13 +651,13 @@
       transition: all 0.3s ease;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
-    
+
     .social-icons a:hover {
       background: #ffcc00;
       color: #1f1f1f;
       transform: translateY(-5px);
     }
-    
+
     /* Loading Animation */
     .loader {
       position: fixed;
@@ -579,12 +672,12 @@
       z-index: 9999;
       transition: opacity 0.5s ease, visibility 0.5s ease;
     }
-    
+
     .loader.hidden {
       opacity: 0;
       visibility: hidden;
     }
-    
+
     .loader-circle {
       width: 50px;
       height: 50px;
@@ -593,52 +686,59 @@
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
-    
+
     @keyframes spin {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
     }
-    
+
     /* Animation for fade in */
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
-    
+
     /* Responsive Design */
     @media (max-width: 768px) {
       section {
         padding: 40px 20px;
       }
-      
+
       .banner h2 {
         font-size: 28px;
       }
-      
+
       .timeline-section::before {
         left: 30px;
       }
-      
+
       .timeline-content {
         width: calc(100% - 60px);
         margin-left: 60px !important;
       }
-      
+
       .timeline-date {
         position: relative;
         left: 0 !important;
         right: 0 !important;
         margin-bottom: 10px;
       }
-      
+
       .timeline-dot {
         left: 20px !important;
       }
-      
+
       .social-icons {
         bottom: 10px;
         right: 10px;
       }
-      
+
       .social-icons a {
         width: 40px;
         height: 40px;
@@ -647,6 +747,7 @@
     }
   </style>
 </head>
+
 <body>
   <!-- Loading Animation -->
   <div class="loader" id="loader">
@@ -655,6 +756,9 @@
 
   <!-- Animated Background -->
   <div class="animated-bg"></div>
+
+  <!-- Cursor Follower (desktop only) -->
+  <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
 
   <header>
     <h1>Meridian Arch Studio</h1>
@@ -677,14 +781,16 @@
   <section>
     <h2>Who We Are</h2>
     <p class="about-text">
-      At Meridian Arch Studio, we are passionate about shaping spaces that reflect both innovation and tradition. 
-      Based in Kerala, our team of visionary architects and designers crafts residential, commercial, and cultural 
+      At Meridian Arch Studio, we are passionate about shaping spaces that reflect both innovation and tradition.
+      Based in Kerala, our team of visionary architects and designers crafts residential, commercial, and cultural
       environments that harmonize with the region's rich heritage while embracing modern aesthetics.
       <br><br>
-      With over a decade of experience, we specialize in sustainable architecture, smart planning, and client-centered design. 
-      Each project is a collaboration — a journey where creativity meets functionality to deliver unique, timeless structures.
+      With over a decade of experience, we specialize in sustainable architecture, smart planning, and client-centered
+      design.
+      Each project is a collaboration — a journey where creativity meets functionality to deliver unique, timeless
+      structures.
     </p>
-    
+
     <div class="about-image">
       <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914" alt="Studio Image">
     </div>
@@ -708,7 +814,7 @@
           <p>Founder & Principal Architect</p>
         </div>
       </div>
-      
+
       <div class="team-member">
         <div class="member-image">
           <img src="" alt="Team Member">
@@ -724,7 +830,7 @@
           <p>Senior Designer</p>
         </div>
       </div>
-      
+
       <div class="team-member">
         <div class="member-image">
           <img src="" alt="Team Member">
@@ -753,7 +859,7 @@
         <h3>Innovation</h3>
         <p>Pushing boundaries with creative solutions and cutting-edge design approaches.</p>
       </div>
-      
+
       <div class="value-box">
         <div class="value-icon">
           <i class="fas fa-leaf"></i>
@@ -761,7 +867,7 @@
         <h3>Sustainability</h3>
         <p>Designing with environmental responsibility and resource efficiency in mind.</p>
       </div>
-      
+
       <div class="value-box">
         <div class="value-icon">
           <i class="fas fa-handshake"></i>
@@ -769,7 +875,7 @@
         <h3>Collaboration</h3>
         <p>Working closely with clients to bring their vision to life.</p>
       </div>
-      
+
       <div class="value-box">
         <div class="value-icon">
           <i class="fas fa-award"></i>
@@ -782,16 +888,17 @@
 
   <section class="timeline-section">
     <h2>Our Journey</h2>
-    
+
     <div class="timeline-item">
       <div class="timeline-content">
         <div class="timeline-date">2010</div>
         <h3>Foundation</h3>
-        <p>Meridian Arch Studio was founded with a vision to blend traditional Kerala architecture with modern design principles.</p>
+        <p>Meridian Arch Studio was founded with a vision to blend traditional Kerala architecture with modern design
+          principles.</p>
       </div>
       <div class="timeline-dot"></div>
     </div>
-    
+
     <div class="timeline-item">
       <div class="timeline-content">
         <div class="timeline-date">2015</div>
@@ -800,7 +907,7 @@
       </div>
       <div class="timeline-dot"></div>
     </div>
-    
+
     <div class="timeline-item">
       <div class="timeline-content">
         <div class="timeline-date">2020</div>
@@ -809,7 +916,7 @@
       </div>
       <div class="timeline-dot"></div>
     </div>
-    
+
     <div class="timeline-item">
       <div class="timeline-content">
         <div class="timeline-date">2025</div>
@@ -834,26 +941,26 @@
 
   <script>
     // Hide loader when page is loaded
-    window.addEventListener('load', function() {
-      setTimeout(function() {
+    window.addEventListener('load', function () {
+      setTimeout(function () {
         document.getElementById('loader').classList.add('hidden');
       }, 500);
     });
 
     // Scroll animations
     const sections = document.querySelectorAll('section');
-    
+
     function checkScroll() {
       sections.forEach(section => {
         const sectionTop = section.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
-        
+
         if (sectionTop < windowHeight * 0.75) {
           section.classList.add('visible');
         }
       });
     }
-    
+
     window.addEventListener('scroll', checkScroll);
     checkScroll(); // Check on load
 
@@ -865,6 +972,97 @@
         bannerBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
       }
     });
+
+    // 60fps smooth scrolling for anchor links
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function smoothScrollTo(targetY, duration = 650) {
+      if (prefersReducedMotion) {
+        window.scrollTo(0, targetY);
+        return;
+      }
+      const startY = window.pageYOffset;
+      const distance = targetY - startY;
+      const startTime = performance.now();
+      const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+      function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeInOutCubic(progress);
+        window.scrollTo(0, startY + distance * eased);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        const header = document.querySelector('header');
+        const offset = header ? header.offsetHeight + 10 : 0;
+        const targetY = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        smoothScrollTo(targetY);
+      });
+    });
+
+    // Cursor follower (desktop only)
+    const cursorFollower = document.getElementById('cursorFollower');
+    const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    if (cursorFollower && isFinePointer) {
+      let mouseX = 0;
+      let mouseY = 0;
+      let currentX = 0;
+      let currentY = 0;
+      let rafId = null;
+      let lastBubble = 0;
+
+      const render = () => {
+        currentX += (mouseX - currentX) * 0.18;
+        currentY += (mouseY - currentY) * 0.18;
+        cursorFollower.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        rafId = requestAnimationFrame(render);
+      };
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorFollower.classList.add('active');
+        if (!rafId) rafId = requestAnimationFrame(render);
+
+        const now = performance.now();
+        if (now - lastBubble > 60) {
+          lastBubble = now;
+          const bubble = document.createElement('span');
+          bubble.className = 'cursor-bubble';
+          bubble.style.left = `${mouseX}px`;
+          bubble.style.top = `${mouseY}px`;
+          const size = 6 + Math.random() * 10;
+          bubble.style.width = `${size}px`;
+          bubble.style.height = `${size}px`;
+          bubble.style.opacity = `${0.5 + Math.random() * 0.5}`;
+          bubble.style.filter = `blur(${Math.random() * 1.5}px)`;
+          document.body.appendChild(bubble);
+          setTimeout(() => {
+            if (bubble.parentNode) bubble.parentNode.removeChild(bubble);
+          }, 1300);
+        }
+      });
+
+      window.addEventListener('mouseleave', () => {
+        cursorFollower.classList.remove('active');
+      });
+
+      document.querySelectorAll('a, button, .btn, .service-box, .intro-card, .timeline-item, .team-member, .value-box').forEach(el => {
+        el.addEventListener('mouseenter', () => cursorFollower.classList.add('expand'));
+        el.addEventListener('mouseleave', () => cursorFollower.classList.remove('expand'));
+      });
+    }
   </script>
 </body>
+
 </html>

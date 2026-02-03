@@ -1,38 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Home - Meridian Arch Studio</title>
   <link rel="icon" type="image/png" href="logo.jpg">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <style>
+    :root {
+      --ink: #1f1f1f;
+      --gold: #ffcc00;
+      --gold-deep: #e6b800;
+      --stone: #f6f4ef;
+      --shadow-soft: 0 12px 28px rgba(0, 0, 0, 0.12);
+      --shadow-strong: 0 18px 45px rgba(0, 0, 0, 0.18);
+    }
     * {
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
     body {
       font-family: 'Montserrat', sans-serif;
-      color: #333;
-      background: url('https://static.vecteezy.com/system/resources/previews/021/615/811/large_2x/abstract-modern-architecture-background-empty-open-space-interior-architectural-space-with-line-structure-3d-rendering-free-photo.jpg') center/cover no-repeat;
+      color: #2b2b2b;
+      background: url('https://thumbs.dreamstime.com/b/abstract-architectural-background-linear-d-illustration-concept-sketch-architecture-building-construction-building-lines-173743442.jpg') center/cover no-repeat;
       scroll-behavior: smooth;
       overflow-x: hidden;
+      perspective: 1200px;
+      background-attachment: fixed;
     }
+
     /* Scrollbar Styling */
     ::-webkit-scrollbar {
       width: 10px;
     }
+
     ::-webkit-scrollbar-track {
       background: #f1f1f1;
     }
+
     ::-webkit-scrollbar-thumb {
       background: #888;
       border-radius: 5px;
     }
+
     ::-webkit-scrollbar-thumb:hover {
       background: #555;
     }
+
     /* Animated Background */
     .animated-bg {
       position: fixed;
@@ -43,6 +72,7 @@
       z-index: -1;
       opacity: 0.4;
     }
+
     .animated-bg::before {
       content: '';
       position: absolute;
@@ -54,17 +84,27 @@
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite;
     }
+
     @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
     }
+
     /* Header Styles */
     header {
-      background: rgba(31, 31, 31, 0.95);
+      background: rgba(31, 31, 31, 0.92);
       backdrop-filter: blur(10px);
       color: #fff;
-      padding: 15px 20px;
+      padding: 18px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -75,18 +115,21 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       animation: slideDown 0.8s ease-out;
     }
+
     @keyframes slideDown {
       from {
         transform: translateY(-100%);
         opacity: 0;
       }
+
       to {
         transform: translateY(0);
         opacity: 1;
       }
     }
+
     header h1 {
-      font-size: 20px;
+      font-size: 22px;
       flex: 1 0 100%;
       margin-bottom: 10px;
       text-align: center;
@@ -98,12 +141,14 @@
       letter-spacing: 1px;
       animation: fadeIn 1s ease-out;
     }
+
     nav {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       width: 100%;
     }
+
     nav a {
       margin: 8px 10px;
       text-decoration: none;
@@ -113,6 +158,7 @@
       position: relative;
       padding: 5px 0;
     }
+
     nav a::after {
       content: '';
       position: absolute;
@@ -123,33 +169,40 @@
       background: #ffcc00;
       transition: width 0.3s ease;
     }
+
     nav a:hover {
       color: #ffcc00;
       transform: translateY(-2px);
     }
+
     nav a:hover::after {
       width: 100%;
     }
+
     /* Media query for screens below 600px */
     @media (min-width: 600px) {
       header {
         flex-wrap: nowrap;
       }
+
       header h1 {
         font-size: 24px;
         flex: none;
         margin-bottom: 0;
         text-align: left;
       }
+
       nav {
         justify-content: flex-end;
         width: auto;
       }
+
       nav a {
         margin-left: 20px;
         font-size: 16px;
       }
     }
+
     /* Hero Section */
     .hero {
       height: 90vh;
@@ -160,7 +213,10 @@
       position: relative;
       text-align: center;
       overflow: hidden;
+      transform-style: preserve-3d;
+      padding: 0 20px;
     }
+
     .hero-bg {
       position: absolute;
       top: 0;
@@ -171,10 +227,17 @@
       z-index: -2;
       animation: zoomIn 20s infinite alternate;
     }
+
     @keyframes zoomIn {
-      from { transform: scale(1); }
-      to { transform: scale(1.1); }
+      from {
+        transform: scale(1);
+      }
+
+      to {
+        transform: scale(1.1);
+      }
     }
+
     .hero::before {
       content: '';
       position: absolute;
@@ -182,21 +245,32 @@
       background: rgba(0, 0, 0, 0.5);
       z-index: -1;
     }
+
     .hero-content {
       position: relative;
       z-index: 1;
       animation: fadeInUp 1.5s ease-out;
+      transform: translateZ(40px);
+      max-width: 820px;
+      padding: 28px 30px;
+      border-radius: 18px;
+      background: rgba(15, 15, 15, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-strong);
     }
+
     @keyframes fadeInUp {
       from {
         transform: translateY(30px);
         opacity: 0;
       }
+
       to {
         transform: translateY(0);
         opacity: 1;
       }
     }
+
     .hero h2 {
       font-size: 48px;
       max-width: 800px;
@@ -204,11 +278,73 @@
       line-height: 1.2;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
+
     .hero p {
       font-size: 18px;
       margin-top: 20px;
       opacity: 0.9;
     }
+
+    .hero-actions {
+      margin-top: 26px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 12px 26px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .btn:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      padding: 12px 26px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+      color: #1a1a1a;
+      box-shadow: 0 10px 25px rgba(255, 204, 0, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) translateZ(6px);
+      box-shadow: 0 14px 30px rgba(255, 204, 0, 0.4);
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-ghost:hover {
+      transform: translateY(-3px) translateZ(6px);
+      background: rgba(255, 255, 255, 0.18);
+    }
+
     .scroll-indicator {
       position: absolute;
       bottom: 30px;
@@ -216,37 +352,115 @@
       transform: translateX(-50%);
       animation: bounce 2s infinite;
     }
+
     @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-      40% { transform: translateX(-50%) translateY(-20px); }
-      60% { transform: translateX(-50%) translateY(-10px); }
+
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+
+      40% {
+        transform: translateX(-50%) translateY(-20px);
+      }
+
+      60% {
+        transform: translateX(-50%) translateY(-10px);
+      }
     }
+
     .scroll-indicator i {
       color: white;
       font-size: 24px;
     }
+
+    /* Hero Ornaments */
+    .hero-ornaments {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      transform-style: preserve-3d;
+    }
+
+    .orb {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+      filter: blur(2px);
+      opacity: 0.6;
+      animation: floatOrb 12s ease-in-out infinite;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      transform: translateZ(60px);
+    }
+
+    .orb.one {
+      top: 12%;
+      left: 8%;
+      animation-delay: -2s;
+    }
+
+    .orb.two {
+      bottom: 18%;
+      right: 10%;
+      width: 160px;
+      height: 160px;
+      animation-delay: -5s;
+    }
+
+    .orb.three {
+      top: 22%;
+      right: 35%;
+      width: 90px;
+      height: 90px;
+      animation-delay: -8s;
+    }
+
+    @keyframes floatOrb {
+      0% {
+        transform: translateZ(60px) translateY(0) translateX(0);
+      }
+
+      50% {
+        transform: translateZ(80px) translateY(-18px) translateX(10px);
+      }
+
+      100% {
+        transform: translateZ(60px) translateY(0) translateX(0);
+      }
+    }
+
     /* Section Styles */
     section {
-      padding: 60px 40px;
+      padding: 70px 40px;
       opacity: 0;
       transform: translateY(30px);
       transition: all 0.8s ease;
     }
+
     section.visible {
       opacity: 1;
       transform: translateY(0);
     }
-    .intro, .services, .projects-preview, .testimonials, .cta, .contact-preview {
+
+    .container {
       max-width: 1200px;
-      margin: auto;
+      margin: 0 auto;
       text-align: center;
     }
+
     section h2 {
       font-size: 32px;
       margin-bottom: 20px;
       position: relative;
       display: inline-block;
     }
+
     section h2::after {
       content: '';
       position: absolute;
@@ -257,6 +471,7 @@
       height: 3px;
       background: #ffcc00;
     }
+
     .intro p {
       font-size: 18px;
       line-height: 1.6;
@@ -265,22 +480,60 @@
       margin-left: auto;
       margin-right: auto;
     }
+
+    .intro-cards {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      perspective: 1000px;
+    }
+
+    .intro-card {
+      background: rgba(255, 255, 255, 0.92);
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: var(--shadow-soft);
+      transform-style: preserve-3d;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .intro-card:hover {
+      transform: translateY(-6px) translateZ(10px);
+      box-shadow: var(--shadow-strong);
+    }
+
+    .intro-card h4 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .intro-card p {
+      font-size: 14px;
+      color: #666;
+      margin-top: 0;
+    }
+
     /* Services Grid */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
       margin-top: 40px;
+      perspective: 1000px;
     }
+
     .service-box {
       background: white;
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      transform-style: preserve-3d;
     }
+
     .service-box::before {
       content: '';
       position: absolute;
@@ -292,62 +545,103 @@
       transform: translateX(-100%);
       transition: transform 0.3s ease;
     }
+
     .service-box:hover {
       transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
+
     .service-box:hover::before {
       transform: translateX(0);
     }
+
     .service-icon {
       font-size: 36px;
       color: #1f1f1f;
       margin-bottom: 15px;
       transition: all 0.3s ease;
+      transform: translateZ(22px);
     }
+
     .service-box:hover .service-icon {
       color: #ffcc00;
       transform: scale(1.1);
     }
+
     .service-box h3 {
       margin-top: 15px;
       font-size: 20px;
+      transform: translateZ(18px);
     }
+
     .service-box p {
       font-size: 15px;
       margin-top: 10px;
       color: #666;
+      transform: translateZ(12px);
     }
+
     /* Projects Preview */
     .projects-preview {
       position: relative;
     }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      align-items: center;
+      margin-top: 30px;
+      text-align: left;
+    }
+
+    .projects-copy p {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .projects-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
     .projects-preview img {
       width: 100%;
-      max-width: 800px;
+      max-width: 100%;
       height: 400px;
       object-fit: cover;
       border-radius: 10px;
-      margin-top: 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      margin-top: 0;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
       transition: all 0.5s ease;
+      transform-style: preserve-3d;
     }
+
     .projects-preview img:hover {
       transform: scale(1.02);
     }
+
     .view-projects-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0;
+      padding: 12px 28px;
       background: linear-gradient(90deg, #1f1f1f, #333);
       color: white;
       text-decoration: none;
-      border-radius: 5px;
+      border-radius: 999px;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
       z-index: 1;
+      min-height: 44px;
+      letter-spacing: 0.2px;
     }
+
     .view-projects-btn::before {
       content: '';
       position: absolute;
@@ -360,21 +654,25 @@
       transition: transform 0.3s ease;
       z-index: -1;
     }
+
     .view-projects-btn:hover {
       color: #1f1f1f;
       transform: translateY(-3px);
       box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
     }
+
     .view-projects-btn:hover::before {
       transform: translateX(0);
     }
+
     /* Testimonials */
     .testimonials {
       background: rgba(255, 255, 255, 0.8);
       border-radius: 15px;
-      padding: 40px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      padding: 46px 40px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
+
     .testimonials blockquote {
       font-style: italic;
       margin: 30px auto;
@@ -383,6 +681,7 @@
       line-height: 1.6;
       position: relative;
     }
+
     .testimonials blockquote::before {
       content: '"';
       font-size: 60px;
@@ -392,21 +691,25 @@
       left: -30px;
       opacity: 0.3;
     }
+
     .testimonials cite {
       display: block;
       margin-top: 15px;
       font-weight: 600;
       color: #1f1f1f;
     }
+
     /* CTA Section */
     .cta {
       background: linear-gradient(135deg, #1f1f1f, #333);
       color: white;
-      padding: 60px 40px;
+      padding: 70px 40px;
       border-radius: 10px;
       position: relative;
       overflow: hidden;
+      transform-style: preserve-3d;
     }
+
     .cta::before {
       content: '';
       position: absolute;
@@ -418,31 +721,99 @@
       opacity: 0.1;
       z-index: 0;
     }
+
     .cta-content {
       position: relative;
       z-index: 1;
+      transform: translateZ(30px);
     }
+
     .cta h2 {
       font-size: 32px;
       margin-bottom: 20px;
     }
+
     .cta a {
-      display: inline-block;
       margin-top: 20px;
-      padding: 12px 30px;
-      background-color: #ffcc00;
-      color: #000;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
     }
-    .cta a:hover {
-      background-color: #e6b800;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4);
+
+    /* 3D Tilt Effect */
+    .tilt-card {
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      will-change: transform;
     }
+
+    .tilt-glow {
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(255, 204, 0, 0.25), transparent 50%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    .tilt-card:hover .tilt-glow {
+      opacity: 1;
+    }
+
+    /* Cursor Follower (desktop only) */
+    @media (hover: hover) and (pointer: fine) {
+      .cursor-follower {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 2000;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle at 30% 30%, rgba(255, 204, 0, 0.9), rgba(255, 204, 0, 0.1));
+        box-shadow: 0 10px 30px rgba(255, 204, 0, 0.25);
+        mix-blend-mode: screen;
+        opacity: 0;
+        transition: opacity 0.2s ease, transform 0.15s ease;
+        will-change: transform, opacity;
+      }
+
+      .cursor-follower.active {
+        opacity: 1;
+      }
+
+      .cursor-follower.expand {
+        transform: translate(-50%, -50%) scale(1.5);
+      }
+
+      .cursor-bubble {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1999;
+        background: radial-gradient(circle at 30% 30%, rgba(255, 204, 0, 0.7), rgba(255, 204, 0, 0));
+        box-shadow: 0 8px 20px rgba(255, 204, 0, 0.25);
+        transform: translate(-50%, -50%);
+        opacity: 0.9;
+        animation: bubbleFloat 1.2s ease-out forwards;
+        will-change: transform, opacity;
+        mix-blend-mode: screen;
+      }
+
+      @keyframes bubbleFloat {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0.9;
+        }
+
+        100% {
+          transform: translate(-50%, -70%) scale(2.2);
+          opacity: 0;
+        }
+      }
+    }
+
     /* Footer */
     footer {
       background-color: #1f1f1f;
@@ -451,6 +822,7 @@
       padding: 20px 10px;
       position: relative;
     }
+
     footer::before {
       content: '';
       position: absolute;
@@ -460,6 +832,7 @@
       height: 3px;
       background: linear-gradient(90deg, transparent, #ffcc00, transparent);
     }
+
     /* Floating Social Icons */
     .social-icons {
       position: fixed;
@@ -470,6 +843,7 @@
       gap: 15px;
       z-index: 1000;
     }
+
     .social-icons a {
       display: flex;
       align-items: center;
@@ -483,11 +857,13 @@
       transition: all 0.3s ease;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
+
     .social-icons a:hover {
       background: #ffcc00;
       color: #1f1f1f;
       transform: translateY(-5px);
     }
+
     /* Loading Animation */
     .loader {
       position: fixed;
@@ -502,10 +878,12 @@
       z-index: 9999;
       transition: opacity 0.5s ease, visibility 0.5s ease;
     }
+
     .loader.hidden {
       opacity: 0;
       visibility: hidden;
     }
+
     .loader-circle {
       width: 50px;
       height: 50px;
@@ -514,34 +892,68 @@
       border-radius: 50%;
       animation: spin 1s linear infinite;
     }
+
     @keyframes spin {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
     }
+
     /* Animation for fade in */
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
+
     /* Responsive Design */
     @media (max-width: 768px) {
       .hero h2 {
         font-size: 32px;
       }
+
+      body {
+        background-attachment: scroll;
+      }
+
       section {
         padding: 40px 20px;
       }
+
       .social-icons {
         bottom: 10px;
         right: 10px;
       }
+
       .social-icons a {
         width: 40px;
         height: 40px;
         font-size: 16px;
       }
+
+      .orb {
+        display: none;
+      }
+
+      .hero-content {
+        padding: 22px 20px;
+      }
+
+      .projects-grid {
+        text-align: center;
+      }
+
+      .projects-copy {
+        align-items: center;
+      }
     }
   </style>
 </head>
+
 <body>
   <!-- Loading Animation -->
   <div class="loader" id="loader">
@@ -550,6 +962,9 @@
 
   <!-- Animated Background -->
   <div class="animated-bg"></div>
+
+  <!-- Cursor Follower (desktop only) -->
+  <div class="cursor-follower" id="cursorFollower" aria-hidden="true"></div>
 
   <header>
     <h1>Meridian Arch Studio</h1>
@@ -564,9 +979,18 @@
 
   <div class="hero">
     <div class="hero-bg"></div>
+    <div class="hero-ornaments" aria-hidden="true">
+      <span class="orb one"></span>
+      <span class="orb two"></span>
+      <span class="orb three"></span>
+    </div>
     <div class="hero-content">
       <h2>Designing Dreams. Building the Future.</h2>
       <p>Creating architectural masterpieces that blend tradition with innovation</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="projects.html">Explore Projects</a>
+        <a class="btn btn-ghost" href="contact.html">Book a Consultation</a>
+      </div>
     </div>
     <div class="scroll-indicator">
       <i class="fas fa-chevron-down"></i>
@@ -574,63 +998,96 @@
   </div>
 
   <section class="intro">
-    <h2>Welcome to Meridian Arch Studio</h2>
-    <p>We are a Kerala-based architectural firm blending traditional aesthetics with modern functionality. Our designs respect nature, culture, and innovation—crafted with care for every client.</p>
+    <div class="container">
+      <h2>Welcome to Meridian Arch Studio</h2>
+      <p>We are a Kerala-based architectural firm blending traditional aesthetics with modern functionality. Our designs
+        respect nature, culture, and innovation - crafted with care for every client.</p>
+      <div class="intro-cards">
+        <div class="intro-card tilt-card">
+          <h4>Client First</h4>
+          <p>We listen deeply, then translate your vision into lasting form.</p>
+        </div>
+        <div class="intro-card tilt-card">
+          <h4>Climate Smart</h4>
+          <p>Designs tuned for Kerala's light, breeze, and monsoon.</p>
+        </div>
+        <div class="intro-card tilt-card">
+          <h4>Modern Craft</h4>
+          <p>Precise detailing with timeless materials and finishes.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="services">
-    <h2>Our Services</h2>
-    <div class="services-grid">
-      <div class="service-box">
-        <div class="service-icon">
-          <i class="fas fa-home"></i>
+    <div class="container">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-box tilt-card">
+          <span class="tilt-glow"></span>
+          <div class="service-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3>Residential Design</h3>
+          <p>Personalized home designs rooted in climate-sensitive and Vastu-compliant architecture.</p>
         </div>
-        <h3>Residential Design</h3>
-        <p>Personalized home designs rooted in climate-sensitive and Vastu-compliant architecture.</p>
-      </div>
-      <div class="service-box">
-        <div class="service-icon">
-          <i class="fas fa-building"></i>
+        <div class="service-box tilt-card">
+          <span class="tilt-glow"></span>
+          <div class="service-icon">
+            <i class="fas fa-building"></i>
+          </div>
+          <h3>Commercial Spaces</h3>
+          <p>Smart, sustainable, and stylish commercial layouts for modern business needs.</p>
         </div>
-        <h3>Commercial Spaces</h3>
-        <p>Smart, sustainable, and stylish commercial layouts for modern business needs.</p>
-      </div>
-      <div class="service-box">
-        <div class="service-icon">
-          <i class="fas fa-cube"></i>
+        <div class="service-box tilt-card">
+          <span class="tilt-glow"></span>
+          <div class="service-icon">
+            <i class="fas fa-cube"></i>
+          </div>
+          <h3>3D Visualization</h3>
+          <p>Realistic renders and walkthroughs to bring your concepts to life before construction.</p>
         </div>
-        <h3>3D Visualization</h3>
-        <p>Realistic renders and walkthroughs to bring your concepts to life before construction.</p>
-      </div>
-      <div class="service-box">
-        <div class="service-icon">
-          <i class="fas fa-tools"></i>
+        <div class="service-box tilt-card">
+          <span class="tilt-glow"></span>
+          <div class="service-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3>Renovations</h3>
+          <p>Revamping traditional structures while preserving their soul and identity.</p>
         </div>
-        <h3>Renovations</h3>
-        <p>Revamping traditional structures while preserving their soul and identity.</p>
       </div>
     </div>
   </section>
 
   <section class="projects-preview">
-    <h2>Featured Projects</h2>
-    <p>Explore our latest architectural masterpieces.</p>
-    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Preview Project">
-    <a href="projects.html" class="view-projects-btn">View All Projects</a>
+    <div class="container">
+      <h2>Featured Projects</h2>
+      <div class="projects-grid">
+        <div class="projects-copy">
+          <p>Explore our latest architectural masterpieces, from tranquil homes to bold commercial spaces. Every project
+            is a balance of light, flow, and modern comfort.</p>
+          <a href="projects.html" class="btn btn-primary view-projects-btn">View All Projects</a>
+        </div>
+        <img class="tilt-card" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Preview Project">
+      </div>
+    </div>
   </section>
 
   <section class="testimonials">
-    <h2>What Our Clients Say</h2>
-    <blockquote>
-      "Meridian Arch Studio transformed our vision into reality. Every detail was perfect, and their team was wonderful to work with."
-      <cite>– Ayesha Rahman, Calicut</cite>
-    </blockquote>
+    <div class="container">
+      <h2>What Our Clients Say</h2>
+      <blockquote>
+        "Meridian Arch Studio transformed our vision into reality. Every detail was perfect, and their team was wonderful
+        to work with."
+        <cite>- Ayesha Rahman, Calicut</cite>
+      </blockquote>
+    </div>
   </section>
 
   <section class="cta">
-    <div class="cta-content">
+    <div class="cta-content container">
       <h2>Ready to Build Your Dream?</h2>
-      <a href="contact.html">Get in Touch</a>
+      <a class="btn btn-primary" href="contact.html">Get in Touch</a>
     </div>
   </section>
 
@@ -648,40 +1105,61 @@
 
   <script>
     // Hide loader when page is loaded
-    window.addEventListener('load', function() {
-      setTimeout(function() {
+    window.addEventListener('load', function () {
+      setTimeout(function () {
         document.getElementById('loader').classList.add('hidden');
       }, 500);
     });
 
     // Scroll animations
     const sections = document.querySelectorAll('section');
-    
+
     function checkScroll() {
       sections.forEach(section => {
         const sectionTop = section.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
-        
+
         if (sectionTop < windowHeight * 0.75) {
           section.classList.add('visible');
         }
       });
     }
-    
     window.addEventListener('scroll', checkScroll);
     checkScroll(); // Check on load
 
-    // Smooth scrolling for anchor links
+    // 60fps smooth scrolling for anchor links
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function smoothScrollTo(targetY, duration = 650) {
+      if (prefersReducedMotion) {
+        window.scrollTo(0, targetY);
+        return;
+      }
+      const startY = window.pageYOffset;
+      const distance = targetY - startY;
+      const startTime = performance.now();
+      const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
+      function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeInOutCubic(progress);
+        window.scrollTo(0, startY + distance * eased);
+        if (progress < 1) requestAnimationFrame(step);
+      }
+
+      requestAnimationFrame(step);
+    }
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
+      anchor.addEventListener('click', function (e) {
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop,
-            behavior: 'smooth'
-          });
-        }
+        if (!target) return;
+        e.preventDefault();
+        const header = document.querySelector('header');
+        const offset = header ? header.offsetHeight + 10 : 0;
+        const targetY = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        smoothScrollTo(targetY);
       });
     });
 
@@ -693,7 +1171,97 @@
         heroBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
       }
     });
+
+    // 3D tilt hover for cards and images
+    const tiltCards = document.querySelectorAll('.tilt-card');
+
+    tiltCards.forEach(card => {
+      let bounds = null;
+
+      const handleMove = (e) => {
+        if (!bounds) bounds = card.getBoundingClientRect();
+        const relX = e.clientX - bounds.left;
+        const relY = e.clientY - bounds.top;
+        const percentX = (relX / bounds.width) - 0.5;
+        const percentY = (relY / bounds.height) - 0.5;
+        const rotateX = percentY * -12;
+        const rotateY = percentX * 12;
+
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(8px)`;
+        card.style.boxShadow = `0 20px 40px rgba(0, 0, 0, 0.2)`;
+        card.style.setProperty('--glow-x', `${relX}px`);
+        card.style.setProperty('--glow-y', `${relY}px`);
+      };
+
+      const handleLeave = () => {
+        card.style.transform = '';
+        card.style.boxShadow = '';
+        bounds = null;
+      };
+
+      card.addEventListener('mousemove', handleMove);
+      card.addEventListener('mouseleave', handleLeave);
+    });
+
+    // Cursor follower (desktop only)
+    const cursorFollower = document.getElementById('cursorFollower');
+    const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    if (cursorFollower && isFinePointer) {
+      let mouseX = 0;
+      let mouseY = 0;
+      let currentX = 0;
+      let currentY = 0;
+      let rafId = null;
+      let lastBubble = 0;
+
+      const render = () => {
+        currentX += (mouseX - currentX) * 0.18;
+        currentY += (mouseY - currentY) * 0.18;
+        cursorFollower.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        rafId = requestAnimationFrame(render);
+      };
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorFollower.classList.add('active');
+        if (!rafId) rafId = requestAnimationFrame(render);
+
+        const now = performance.now();
+        if (now - lastBubble > 60) {
+          lastBubble = now;
+          const bubble = document.createElement('span');
+          bubble.className = 'cursor-bubble';
+          bubble.style.left = `${mouseX}px`;
+          bubble.style.top = `${mouseY}px`;
+          const size = 6 + Math.random() * 10;
+          bubble.style.width = `${size}px`;
+          bubble.style.height = `${size}px`;
+          bubble.style.opacity = `${0.5 + Math.random() * 0.5}`;
+          bubble.style.filter = `blur(${Math.random() * 1.5}px)`;
+          document.body.appendChild(bubble);
+          setTimeout(() => {
+            if (bubble.parentNode) bubble.parentNode.removeChild(bubble);
+          }, 1300);
+        }
+      });
+
+      window.addEventListener('mouseleave', () => {
+        cursorFollower.classList.remove('active');
+      });
+
+      document.querySelectorAll('a, button, .btn, .service-box, .intro-card').forEach(el => {
+        el.addEventListener('mouseenter', () => cursorFollower.classList.add('expand'));
+        el.addEventListener('mouseleave', () => cursorFollower.classList.remove('expand'));
+      });
+    }
   </script>
 </body>
+
 </html>
+
+
+
+
 
