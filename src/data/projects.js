@@ -1,7 +1,7 @@
 export const categories = ['All', 'Residential', 'Commercial', 'Hospitality']
 
 /** Place `Untitled design (2).mp4` in the `public/` folder (same level as favicon). */
-export const BAYT_MARYAM_VIDEO = '/Untitled design (2).mp4'
+export const BAYT_MARYAM_VIDEO = '/main_video.mp4'
 
 /**
  * Images: capped width in URL for faster loads. Optional `video` + `videoPoster` for walkthroughs.

@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import Reveal from '../components/Reveal.jsx'
 import ProjectVideo from '../components/ProjectVideo.jsx'
-import { categories, projects, projectsWithVideo } from '../data/projects.js'
+import CinematicVideo from '../components/CinematicVideo.jsx'
+import { categories, projects, projectsWithVideo, BAYT_MARYAM_VIDEO } from '../data/projects.js'
 
 export default function Projects() {
   const [filter, setFilter] = useState('All')
@@ -15,8 +16,12 @@ export default function Projects() {
 
   return (
     <>
-      <header className="page-hero page-hero--compact">
-        <div className="wrap">
+      <header className="page-hero page-hero--video">
+        <div className="page-hero__media">
+          <CinematicVideo src={BAYT_MARYAM_VIDEO} poster="" />
+        </div>
+        <div className="page-hero__overlay" />
+        <div className="wrap relative z-high">
           <p className="eyebrow">Portfolio</p>
           <h1 className="headline">Projects &amp; walkthroughs.</h1>
           <p className="lede">

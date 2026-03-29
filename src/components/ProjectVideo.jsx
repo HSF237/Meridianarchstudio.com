@@ -7,7 +7,9 @@ export default function ProjectVideo({ title, location, poster, src }) {
       <div className="project-video__frame">
         <video
           className="project-video__el"
-          controls
+          autoPlay
+          muted
+          loop
           playsInline
           preload="metadata"
           poster={poster}
