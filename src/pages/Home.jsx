@@ -84,30 +84,32 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="spotlight" aria-labelledby="spotlight-title">
-        <div className="spotlight__media">
-          {spotlight.video ? (
-            <CinematicVideo
-              src={spotlight.video}
-              poster={spotlight.videoPoster || spotlight.image}
-              className="spotlight__vid"
-            />
-          ) : (
-            <img src={spotlight.image} alt="" loading="lazy" />
-          )}
-        </div>
-        <div className="spotlight__overlay" />
-        <div className="spotlight__content">
-          <p className="spotlight__label">Featured project</p>
-          <h2 id="spotlight-title" className="spotlight__title">
-            {spotlight.title}
-          </h2>
-          <p className="spotlight__text">{spotlight.blurb}</p>
-          <Link className="btn btn--primary" to="/projects">
-            View portfolio
-          </Link>
-        </div>
-      </section>
+      {spotlight && (
+        <section className="spotlight" aria-labelledby="spotlight-title">
+          <div className="spotlight__media">
+            {spotlight.video ? (
+              <CinematicVideo
+                src={spotlight.video}
+                poster={spotlight.videoPoster || spotlight.image}
+                className="spotlight__vid"
+              />
+            ) : (
+              <img src={spotlight.image} alt="" loading="lazy" />
+            )}
+          </div>
+          <div className="spotlight__overlay" />
+          <div className="spotlight__content">
+            <p className="spotlight__label">Featured project</p>
+            <h2 id="spotlight-title" className="spotlight__title">
+              {spotlight.title}
+            </h2>
+            <p className="spotlight__text">{spotlight.blurb}</p>
+            <Link className="btn btn--primary" to="/projects">
+              View portfolio
+            </Link>
+          </div>
+        </section>
+      )}
 
       <section className="section section--tight">
         <div className="wrap">
@@ -146,27 +148,15 @@ export default function Home() {
           </Reveal>
 
           <div className="bento">
-            <article className="bento__item bento__item--lg">
-              <img src={featured[0].image} alt="" loading="lazy" />
-              <div className="bento__caption">
-                <h3>{featured[0].title}</h3>
-                <p>{featured[0].location}</p>
-              </div>
-            </article>
-            <article className="bento__item bento__item--sm">
-              <img src={featured[1].image} alt="" loading="lazy" />
-              <div className="bento__caption">
-                <h3>{featured[1].title}</h3>
-                <p>{featured[1].location}</p>
-              </div>
-            </article>
-            <article className="bento__item bento__item--sm">
-              <img src={featured[2].image} alt="" loading="lazy" />
-              <div className="bento__caption">
-                <h3>{featured[2].title}</h3>
-                <p>{featured[2].location}</p>
-              </div>
-            </article>
+            {featured.map((p, i) => (
+              <article key={p.id || i} className={`bento__item ${i === 0 ? 'bento__item--lg' : 'bento__item--sm'}`}>
+                <img src={p.image} alt="" loading="lazy" />
+                <div className="bento__caption">
+                  <h3>{p.title}</h3>
+                  <p>{p.location}</p>
+                </div>
+              </article>
+            ))}
           </div>
 
           <Reveal className="center-actions">
