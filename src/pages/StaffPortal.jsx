@@ -29,6 +29,7 @@ export default function StaffPortal() {
   }, [isAuthenticated])
 
   const fetchProjects = async () => {
+    if (!db) return
     setLoading(true)
     try {
       const q = query(collection(db, 'projects'), orderBy('title'))
@@ -60,6 +61,10 @@ export default function StaffPortal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (!db) {
+      alert("Firebase not initialized. Check your configuration.")
+      return
+    }
     setLoading(true)
     try {
       if (editingId) {
@@ -94,6 +99,7 @@ export default function StaffPortal() {
   }
 
   const handleDelete = async (id) => {
+    if (!db) return
     if (window.confirm('Are you sure you want to delete this project?')) {
       try {
         await deleteDoc(doc(db, 'projects', id))

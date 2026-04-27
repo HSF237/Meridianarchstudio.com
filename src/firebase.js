@@ -13,6 +13,20 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
-export const auth = getAuth(app);
+let app;
+let db;
+let auth;
+
+try {
+  if (firebaseConfig.apiKey) {
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    auth = getAuth(app);
+  } else {
+    console.warn("Firebase API Key missing. Firebase features will be disabled.");
+  }
+} catch (error) {
+  console.error("Firebase initialization failed:", error);
+}
+
+export { db, auth };

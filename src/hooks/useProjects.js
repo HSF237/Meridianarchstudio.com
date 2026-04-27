@@ -9,6 +9,10 @@ export function useProjects() {
 
   useEffect(() => {
     async function fetchProjects() {
+      if (!db) {
+        setLoading(false)
+        return
+      }
       try {
         const q = query(collection(db, 'projects'), orderBy('title'))
         const querySnapshot = await getDocs(q)
