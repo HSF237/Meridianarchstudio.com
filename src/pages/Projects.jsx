@@ -2,15 +2,17 @@ import { useMemo, useState } from 'react'
 import Reveal from '../components/Reveal.jsx'
 import ProjectVideo from '../components/ProjectVideo.jsx'
 import CinematicVideo from '../components/CinematicVideo.jsx'
-import { categories, projects, projectsWithVideo, BAYT_MARYAM_VIDEO } from '../data/projects.js'
+import { categories, projectsWithVideo, BAYT_MARYAM_VIDEO } from '../data/projects.js'
+import { useProjects } from '../hooks/useProjects.js'
 
 export default function Projects() {
   const [filter, setFilter] = useState('All')
+  const { projects: allProjects, loading } = useProjects()
 
   const list = useMemo(() => {
-    if (filter === 'All') return projects
-    return projects.filter((p) => p.category === filter)
-  }, [filter])
+    if (filter === 'All') return allProjects
+    return allProjects.filter((p) => p.category === filter)
+  }, [filter, allProjects])
 
   const videosForFilter = useMemo(() => projectsWithVideo(list), [list])
 

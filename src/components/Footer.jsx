@@ -52,8 +52,9 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="footer-bottom">
+      <div className="footer-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
         <p>© {new Date().getFullYear()} Meridian Arch Studio. All rights reserved.</p>
+        <Link to="/staff" style={{ opacity: 0.5, fontSize: '0.75rem', textDecoration: 'none' }}>Staff Portal</Link>
       </div>
     </footer>
   )

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import Reveal from '../components/Reveal.jsx'
 import Marquee from '../components/Marquee.jsx'
 import CinematicVideo from '../components/CinematicVideo.jsx'
-import { projects, featuredIds } from '../data/projects.js'
+import { useProjects } from '../hooks/useProjects.js'
 import {
   homeHero,
   welcome,
@@ -19,8 +19,8 @@ const introImg =
   'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80'
 
 export default function Home() {
-  const featured = projects.filter((p) => featuredIds.includes(p.id))
-  const spotlight = projects.find((p) => p.spotlight) || featured[0]
+  const { projects, featuredProjects: featured, loading } = useProjects()
+  const spotlight = projects.find((p) => p.spotlight) || featured[0] || projects[0]
 
   return (
     <>
