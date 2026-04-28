@@ -3,6 +3,7 @@
 export const contact = {
   addressLine1: 'Payyannur, Kannur, Kerala, India',
   mapLabel: 'Map: Payyannur, Kannur, Kerala',
+  mapIframeUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.972013039133!2d75.2151784758794!3d12.11406743309693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba46ef28ae242f3%3A0x955169b347b5e28c!2sMeridian%20Builders%20%26%20Architectural%20Designers!5e0!3m2!1sen!2sin!4v1777352304310!5m2!1sen!2sin",
   phoneDisplay: '+91 98958 76084',
   phoneTel: '+919895876084',
   phoneWhatsapp: '919895876084',

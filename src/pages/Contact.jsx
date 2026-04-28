@@ -121,8 +121,15 @@ export default function Contact() {
                 <dt>Hours</dt>
                 <dd>{contact.hours}</dd>
               </dl>
-              <div className="map-placeholder" role="img" aria-label={contact.mapLabel}>
-                {contact.mapLabel}
+              <div className="map-container">
+                <iframe
+                  title={contact.mapLabel}
+                  src={contact.mapIframeUrl}
+                  style={{ border: 0 }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
             </aside>
           </Reveal>
