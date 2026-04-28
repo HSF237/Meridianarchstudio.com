@@ -36,10 +36,8 @@ export default function Header() {
     }
   }, [open])
 
-  const transparent = pathname === '/' && !scrolled && !open
-
   return (
-    <header className={`site-header ${transparent ? 'site-header--transparent' : 'site-header--solid'}`}>
+    <header className="site-header site-header--solid">
       <div className="site-header__inner">
         <Link to="/" className="site-logo" onClick={() => setOpen(false)}>
           <img src="/logo.png" alt="Meridian" className="site-logo__img" />

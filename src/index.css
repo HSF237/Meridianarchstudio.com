@@ -110,9 +110,7 @@ a:hover {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(247, 245, 240, 0.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: #ffffff;
   border-bottom: 1px solid var(--line);
 }
 
@@ -263,7 +261,7 @@ a:hover {
     width: 100%;
     max-width: none;
     z-index: 1200;
-    background: rgba(247, 245, 240, 0.98);
+    background: #ffffff;
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
@@ -276,24 +274,6 @@ a:hover {
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
     box-shadow: -8px 0 40px rgba(0, 0, 0, 0.08);
-  }
-
-  .site-header--transparent .site-nav {
-    background: rgba(18, 18, 18, 0.97);
-  }
-
-  .site-header--transparent .site-nav__link {
-    color: rgba(255, 253, 248, 0.92);
-  }
-
-  .site-header--transparent .site-nav__link:hover {
-    color: var(--cream);
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  .site-header--transparent .site-nav__link.is-active {
-    color: var(--cream);
-    background: rgba(201, 162, 39, 0.2);
   }
 
   .site-nav.is-open {

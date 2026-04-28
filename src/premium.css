@@ -75,48 +75,9 @@
 }
 
 .site-header--solid {
-  background: rgba(247, 245, 240, 0.92) !important;
+  background: #ffffff !important;
   border-bottom: 1px solid var(--line) !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
-}
-
-.site-header--transparent {
-  background: rgba(6, 6, 6, 0.28) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-.site-header--transparent .site-logo__name {
-  color: var(--cream);
-}
-
-.site-header--transparent .site-logo__sub {
-  color: rgba(255, 253, 248, 0.55);
-}
-
-.site-header--transparent .site-logo__mark {
-  background: linear-gradient(145deg, #2a2a2a, #111);
-}
-
-.site-header--transparent .site-nav__link {
-  color: rgba(255, 253, 248, 0.88);
-}
-
-.site-header--transparent .site-nav__link:hover {
-  color: var(--cream);
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.site-header--transparent .site-nav__link.is-active {
-  color: var(--cream);
-  background: rgba(201, 162, 39, 0.2);
-}
-
-.site-header--transparent .nav-toggle__bar,
-.site-header--transparent .nav-toggle__bar::before,
-.site-header--transparent .nav-toggle__bar::after {
-  background: var(--cream);
 }
 
 /* Marquee */
