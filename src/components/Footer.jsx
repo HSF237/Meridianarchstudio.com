@@ -5,8 +5,8 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-grid">
-        <div>
-          <p className="footer-brand">Meridian Arch Studio</p>
+        <div className="footer-logo-wrap">
+          <img src="/logo.png" alt="Meridian Arch Studio" className="footer-logo-img" />
           <p className="footer-tagline">{welcome.body}</p>
         </div>
         <div>

@@ -42,11 +42,7 @@ export default function Header() {
     <header className={`site-header ${transparent ? 'site-header--transparent' : 'site-header--solid'}`}>
       <div className="site-header__inner">
         <Link to="/" className="site-logo" onClick={() => setOpen(false)}>
-          <span className="site-logo__mark" aria-hidden="true" />
-          <span className="site-logo__text">
-            <span className="site-logo__name">Meridian</span>
-            <span className="site-logo__sub">Arch Studio</span>
-          </span>
+          <img src="/logo.png" alt="Meridian" className="site-logo__img" />
         </Link>
 
         <button
